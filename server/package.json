@@ -1,0 +1,37 @@
+{
+  "name": "myapp",
+  "version": "1.0.0",
+  "description": "### Authors:",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShaneZTH/CS5610-Project3.git"
+  },
+  "author": "Taohan Zhu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ShaneZTH/CS5610-Project3/issues"
+  },
+  "homepage": "https://github.com/ShaneZTH/CS5610-Project3#readme",
+  "dependencies": {
+    "body-parser": "^1.20.1",
+    "cookie-parser": "^1.4.6",
+    "debug": "~2.6.9",
+    "dotenv": "^16.0.3",
+    "express": "~4.16.1",
+    "express-session": "^1.17.3",
+    "http-errors": "^1.6.3",
+    "mongodb": "^4.11.0",
+    "morgan": "~1.9.1",
+    "sass": "^1.55.0"
+  },
+  "devDependencies": {
+    "eslint-config-prettier": "^8.5.0",
+    "nodemon": "^2.0.20",
+    "prettier": "^2.7.1"
+  }
+}
