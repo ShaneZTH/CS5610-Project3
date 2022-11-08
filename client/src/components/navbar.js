@@ -1,20 +1,23 @@
 import React from 'react';
-import '../App.css'
+import '../style/navbar.css'
 import {  Link } from "react-router-dom";
-const NavBar=()=>{
+function NavBar(){
+    function changeBackground(e){
+        e.target.style.background='blue';
+    }
     return(
-        <div>
+        <div className='navbar'>
             <li>
-                <Link to="/">Spending Tracker</Link>
+                <Link to="/" className='title'>Spending Tracker</Link>
             </li>
             <li>
-                <Link to="/budget">My Budget</Link>
+                <Link to="/budget" className='menu'>My Budget</Link>
             </li>
             <li>
-                <Link to="/rank">My Ranking</Link>
+                <Link to="/rank" className='menu'>My Ranking</Link>
             </li>
             <li>
-                <Link to="/account">My Account</Link>
+                <Link to="/account" className='menu'>My Account</Link>
             </li>
         </div>
     );
