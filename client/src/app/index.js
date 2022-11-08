@@ -2,14 +2,15 @@
 import React from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
 
-import { NavBar } from '../components'
+//import { NavBar } from '../components'
+import NavBar from "../components/navbar"
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 function App() {
   return (
     <Router>
-        <NavBar />
+        <NavBar/>
     </Router>
   )
 }
