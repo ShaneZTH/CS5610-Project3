@@ -2,9 +2,6 @@ import React from 'react';
 import '../style/navbar.css'
 import {  Link } from "react-router-dom";
 function NavBar(){
-    function changeBackground(e){
-        e.target.style.background='blue';
-    }
     return(
         <div className='navbar'>
             <li>
