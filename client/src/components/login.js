@@ -5,17 +5,17 @@ function Login(){
     <div className='login-wrapper'>
         <h2>Log In to See Your Customized Plan</h2>
         <form>
-            <label>
-                <p>Username</p>
-                <input type="text"/>
-            </label>
-            <label>
-                <p>Password</p>
-                <input type="password"></input>
-            </label>
-            <div>
-                <button type="submit">Log In</button>
-            </div>
+            <ul>
+                <li >
+                    <label className='form-label'>Username: </label>
+                    <input type="text"/>
+                </li>
+                <li>
+                    <label className='form-label'>Password: </label>
+                    <input type="password"></input>
+                </li>
+            </ul>
+            <button type="submit" className='login-button'>Log In</button>
         </form>
     </div>
     );
