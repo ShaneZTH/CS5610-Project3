@@ -6,6 +6,7 @@ import '../App.css'
 //import { NavBar } from '../components'
 import NavBar from "../components/navbar"
 import Login from "../components/login"
+import Footer from '../components/footer';
 import background from "../images/bg-img.jpeg"
 import { Image } from 'primereact/image';
  
@@ -21,7 +22,8 @@ function App() {
           <Route path="/" element={<Login/>}/>
         </Routes>
     </Router>
-    <Image src='../images/save.jpg' alt="Image text"></Image>
+
+    <Footer/>
     </div>
   )
 }

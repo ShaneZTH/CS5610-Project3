@@ -4,7 +4,7 @@
   "description": "### Authors:",
   "main": "index.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "node app.js --ignore client",
     "dev": "nodemon app.js --ignore client"
   },
   "repository": {
