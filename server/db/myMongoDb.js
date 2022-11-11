@@ -1,4 +1,5 @@
-import { MongoClient } from "mongodb";
+// import { MongoClient } from "mongodb";
+const { MongoClient } = require("mongodb");
 
 function myMongoDb() {
   const myDB = {};
@@ -7,9 +8,30 @@ function myMongoDb() {
 
   const COLLECTION_SPENDING = "spending";
 
-  myDB.getSpending = async (userId) => {
+  // CRUD
+  myDB.createSpendingRecord = async (data = {}) => {
     let client;
-    const query = { user: userId };
+
+    try {
+      client = new MongoClient(uri);
+      const spendingCol = client.db(DB_NAME).collection(COLLECTION_SPENDING);
+
+      return spendingCol.insertOne(data, (err, resp) => {
+        let ret;
+        if (err) ret = "Error occured in createSpending";
+        else ret = "Inserted spending" + data;
+
+        return ret;
+      });
+    } finally {
+      console.log("createSpending: Closing db connection");
+      client.close();
+    }
+  };
+
+  myDB.getUserSpending = async (user) => {
+    let client;
+    const query = { user: user };
 
     try {
       client = new MongoClient(uri);
@@ -25,4 +47,4 @@ function myMongoDb() {
   return myDB;
 }
 
-export default myMongoDb();
+module.exports = myMongoDb();

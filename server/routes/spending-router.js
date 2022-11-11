@@ -2,7 +2,7 @@ const router = require("express").Router();
 const spending = require("../controllers/spending-controller.js");
 
 // Create
-// router.post("/", ); // TODO
+router.post("/", spending.addRecord);
 
 // Retrieve by userId
 router.get("/user", spending.getUser);
