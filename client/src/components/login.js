@@ -10,10 +10,26 @@ function Login(){
     const passwordUpdate = (event)=>{
         setPassword(event.target.value);
     }
-    const handleSubmit = event =>{
-        console.log(name);
-        console.log(password);
-        alert('You have submitted the form');
+    const handleSubmit = async(e) =>{
+        e.preventDefault();
+        const postURL = "http://localhost:8080/login";
+        fetch(postURL,{
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json',
+            },
+            body:JSON.stringify({
+                name:name,
+                password:password
+            })
+        }).then((response)=>{
+            if (response.status !== 200) {
+                console.log("xxxasdfsdfs");
+                alert("Invalid username or password");
+                throw new Error(response.statusText);
+            }
+            return response.json();
+        }).catch(err=>console.log(err));
     }
     return(
     <div>
