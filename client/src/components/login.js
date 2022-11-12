@@ -1,13 +1,15 @@
 import {useNavigate} from 'react-router-dom';
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import '../style/login.css';
 import save_img from '../images/save.jpg';
-function Login(){
+function Login({updateUser}){
     const navigate = useNavigate();
     var [name,setName]=useState();
     var [password,setPassword]=useState();
+    
     const nameUpdate = (event)=>{
         setName(event.target.value);
+        updateUser(event.target.value);
     }
     const passwordUpdate = (event)=>{
         setPassword(event.target.value);
