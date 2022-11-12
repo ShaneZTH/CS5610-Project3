@@ -45,7 +45,7 @@ router.post("/login", (req, res) => {
     let session = req.session;
     //console.log("user name is",username);
     session.user = username;
-    //res.redirect("/storage");
+    //res.redirect("http://localhost:8081/account");
   });
 });
 

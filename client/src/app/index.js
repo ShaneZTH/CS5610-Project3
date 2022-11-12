@@ -7,6 +7,9 @@ import '../App.css'
 import NavBar from "../components/navbar"
 import Login from "../components/login"
 import Footer from '../components/footer';
+import Dashboard from '../pages/dashboard';
+import Rank from '../pages/rank';
+import Budget from '../pages/budget';
 import background from "../images/bg-img.jpeg"
 import { Image } from 'primereact/image';
  
@@ -20,6 +23,9 @@ function App() {
         <NavBar/>
         <Routes>
           <Route path="/" element={<Login/>}/>
+          <Route path="/account" element={<Dashboard/>}/>
+          <Route path='/budget' element={<Budget/>}/>
+          <Route path='/rank' element={<Rank/>}/>
         </Routes>
     </Router>
 

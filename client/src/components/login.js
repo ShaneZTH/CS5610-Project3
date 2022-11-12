@@ -1,7 +1,9 @@
+import {useNavigate} from 'react-router-dom';
 import React,{useState} from 'react';
 import '../style/login.css';
 import save_img from '../images/save.jpg';
 function Login(){
+    const navigate = useNavigate();
     var [name,setName]=useState();
     var [password,setPassword]=useState();
     const nameUpdate = (event)=>{
@@ -13,6 +15,7 @@ function Login(){
     const handleSubmit = async(e) =>{
         e.preventDefault();
         const postURL = "http://localhost:8080/login";
+        navigate("/account");
         fetch(postURL,{
             method:'POST',
             headers:{
@@ -23,11 +26,14 @@ function Login(){
                 password:password
             })
         }).then((response)=>{
-            if (response.status !== 200) {
-                console.log("xxxasdfsdfs");
+            //navigate("/account");
+            if (!response.ok) {
+                console.log(response);
                 alert("Invalid username or password");
+                navigate("/");
                 throw new Error(response.statusText);
             }
+            //navigate("/account");
             return response.json();
         }).catch(err=>console.log(err));
     }
