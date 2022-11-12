@@ -1,30 +1,25 @@
 const express = require("express");
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
 const app = express();
 const session = require("express-session");
 const PORT = process.env.PORT || 8080;
 var corsOptions = {
-  origin: "http://127.0.0.1:3000",
+  origin: "http://localhost:8081",
+  methods: ['POST', 'PUT', 'GET', 'OPTIONS', 'HEAD'],
+  credentials:true
 };
 
-//app.use(cors(corsOptions));
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-});
+app.use(cors(corsOptions));
 
 app.use(
   session({
     secret: "No secrete",
     saveUninitialized: true,
     cookie: {
-      expires: new Date(253402300000000)
+      expires: new Date(253402300000000),
       //maxAge: 60000
-      // ,secure: false
+      secure: false
     },
     resave: false
   })
@@ -35,24 +30,30 @@ app.use(
 app.use(express.json());
 
 // parse requests of content-type - application/x-www-form-urlencoded
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
 
-// simple route
-app.get("/", (req, res) => {
-  res.json({ message: "hello world" });
-});
-
-// set port, listen for requests
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
+});
+
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:8081");
+  res.setHeader("Access-Control-Allow-Credentials","true");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
 });
 
 let mongoUtil = require("./db/mongoUtil.js");
 mongoUtil.connectToServer(() => {
   let authRouter = require("./routes/auth.js");
+  let expenseRouter = require("./routes/expense.js");
 
- // app.use("/", router);
   app.use("/", authRouter);
+  app.use("/expense",expenseRouter);
 
 
   // Forward 404 to error handler

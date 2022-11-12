@@ -19,13 +19,14 @@ function Login({updateUser}){
         const postURL = "http://localhost:8080/login";
         navigate("/account");
         fetch(postURL,{
+            credentials:'include',
             method:'POST',
             headers:{
                 'Content-Type':'application/json',
             },
             body:JSON.stringify({
-                name:name,
-                password:password
+                myname:name,
+                mypassword:password
             })
         }).then((response)=>{
             //navigate("/account");
@@ -36,7 +37,7 @@ function Login({updateUser}){
                 throw new Error(response.statusText);
             }
             //navigate("/account");
-            return response.json();
+            return response.text();
         }).catch(err=>console.log(err));
     }
     return(

@@ -4,9 +4,8 @@ const db = mongoUtil.getDb();
 
 // Simple Login
 router.post("/login", (req, res) => {
-  console.log(req.body);
-  const username = req.body.name;
-  const password = req.body.password;
+  const username = req.body.myname;
+  const password = req.body.mypassword;
   console.log(username + ":" + password);
 
   // Authenticate the User
@@ -43,9 +42,9 @@ router.post("/login", (req, res) => {
     }
 
     let session = req.session;
-    //console.log("user name is",username);
     session.user = username;
-    //res.redirect("http://localhost:8081/account");
+    console.log(session);
+    res.send(session.user);
   });
 });
 
