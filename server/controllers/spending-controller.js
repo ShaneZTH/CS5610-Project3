@@ -24,6 +24,27 @@ exports.addRecord = async (req, res) => {
   res.json(spendings);
 };
 
+exports.search = async (req, res) => {
+  const user = req.user ? req.user : FAKE_USER;
+  console.log("searchRecord called with user=" + user);
+
+  if (!user) {
+    res.status(401).send("User unauthorized");
+    return;
+  }
+
+  const key = req.query.searchKey;
+  const val = req.query.searchValue;
+
+  let query = {
+    user: user,
+    key: val,
+  };
+
+  const spendings = await myDB.searchSpendingRecord(query);
+  res.json(spendings);
+};
+
 exports.getUser = async (req, res) => {
   // TODO: Check w/ passport.js structure
   const user = req.user ? req.user : FAKE_USER;
@@ -34,6 +55,7 @@ exports.getUser = async (req, res) => {
     return;
   }
 
-  const spendings = await myDB.getUserSpending(user);
+  const query = { user: user };
+  const spendings = await myDB.searchSpendingRecord(query);
   res.json(spendings);
 };
