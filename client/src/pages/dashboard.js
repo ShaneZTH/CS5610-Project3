@@ -1,6 +1,7 @@
 import React,{useState,useEffect} from 'react'; 
 import '../style/account.css';
 import ExpenseForm from '../components/expenseForm';
+import StatusTable from '../components/statusTable';
 function Dashboard(props){
     const [username,setUsername] = useState(()=>props.username);
     useEffect(() => {
@@ -11,6 +12,8 @@ function Dashboard(props){
         <div>
             <h2 className='greeting'>Hi {username}, let's start saving today!</h2>
             <ExpenseForm curr_user={username}/>
+            <h2 className='status-text'>Current Status</h2>
+            <StatusTable/>
         </div>
     );
 }

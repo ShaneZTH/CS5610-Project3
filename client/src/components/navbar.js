@@ -11,7 +11,7 @@ function NavBar(){
                 <Link to="/budget" className='menu'>My Budget</Link>
             </li>
             <li>
-                <Link to="/rank" className='menu'>My Ranking</Link>
+                <Link to="/rank" className='menu'>Ranking & Tips</Link>
             </li>
             <li>
                 <Link to="/account" className='menu'>My Account</Link>
