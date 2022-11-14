@@ -25,8 +25,8 @@ function Login({updateUser}){
                 'Content-Type':'application/json',
             },
             body:JSON.stringify({
-                myname:name,
-                mypassword:password
+                username:name,
+                password:password
             })
         }).then((response)=>{
             //navigate("/account");

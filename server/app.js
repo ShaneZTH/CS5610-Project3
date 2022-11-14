@@ -3,6 +3,14 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const app = express();
 const session = require("express-session");
+/*  PASSPORT SETUP  */
+
+const passport = require('passport');
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+
 const PORT = process.env.PORT || 8080;
 var corsOptions = {
   origin: "http://localhost:8081",
@@ -47,13 +55,31 @@ app.use((req, res, next) => {
   next();
 });
 
+//require("./passport/auth")(passport);
+
+
 let mongoUtil = require("./db/mongoUtil.js");
 mongoUtil.connectToServer(() => {
-  let authRouter = require("./routes/auth.js");
+  require("./passport/auth")(passport);
+  let authRouter = require("./passport/auth.js");
   let expenseRouter = require("./routes/expense.js");
 
-  app.use("/", authRouter);
+  //app.use("/", authRouter);
   app.use("/expense",expenseRouter);
+  // Routes
+  app.post("/login", (req, res, next) => {
+    passport.authenticate("local", (err, user, info) => {
+      if (err) throw err;
+      if (!user) res.send("No User Exists");
+      else {
+        req.logIn(user, (err) => {
+          if (err) throw err;
+          res.send("Successfully Authenticated");
+          console.log("found user",req.user);
+        });
+      }
+    })(req, res, next);
+  });
 
 
   // Forward 404 to error handler
@@ -69,5 +95,6 @@ mongoUtil.connectToServer(() => {
     res.render("error");
   });
 });
+
 
 module.exports = app;

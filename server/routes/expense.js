@@ -7,9 +7,9 @@ const app = express();
   
 
 router.post('/',function(req,res){
-    var collection = 'expense'+req.session.user;
+    var collection = 'expense'+req.session.passport.user.user;
     db.collection(collection).insertOne(req.body);
-    console.log(collection);
+    console.log("collection name",collection);
     res.status(204).send();
 });
 
