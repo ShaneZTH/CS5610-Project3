@@ -3,6 +3,7 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const app = express();
 const session = require("express-session");
+const createError = require('http-errors');
 /*  PASSPORT SETUP  */
 
 const passport = require('passport');
@@ -64,13 +65,16 @@ mongoUtil.connectToServer(() => {
   let authRouter = require("./passport/auth.js");
   let expenseRouter = require("./routes/expense.js");
 
-  //app.use("/", authRouter);
   app.use("/expense",expenseRouter);
   // Routes
   app.post("/login", (req, res, next) => {
     passport.authenticate("local", (err, user, info) => {
       if (err) throw err;
-      if (!user) res.send("No User Exists");
+      if (!user){ 
+        //res.send("No User Exists");
+        console.log("invalid user");
+        return res.redirect("/expense");
+      }
       else {
         req.logIn(user, (err) => {
           if (err) throw err;

@@ -15,15 +15,17 @@ const authUser =(username,password,done)=>{
     const query = { user: username };
     db.collection("users").findOne(query, (err, results) => {
       if (err) throw err;
-      //console.log("results: ", results);
+      console.log("results: ", results);
   
       if (results) {
         //console.log("User does not exist");
   
         // Check password
         if (results.password != password) {
-          res.status(401).send("Invalid username or password");
+          //res.status(401).send("Invalid username or password");
           return done(null,false);
+        }else{
+          return done(null,results);
         }
       } else {
         // Register the user
@@ -42,8 +44,12 @@ const authUser =(username,password,done)=>{
           .catch((err) => {
             console.error(err || `Error occurred when inserting data=${data}.`);
           });
+        db.collection("users").findOne(query,(err,user)=>{
+          return done(null,user);
+        })
+        
+        
       }
-      return done(null,results);
     });
     //return done(null,results);
 }
