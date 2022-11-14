@@ -79,10 +79,16 @@ mongoUtil.connectToServer(() => {
         req.logIn(user, (err) => {
           if (err) throw err;
           res.send("Successfully Authenticated");
+          req.session.save();
           console.log("found user",req.user);
         });
       }
     })(req, res, next);
+  });
+
+  app.get("/user", (req, res) => {
+    console.log("get session", req.session);
+    res.send(req.user); // The req.user stores the entire user that has been authenticated inside of it.
   });
 
 

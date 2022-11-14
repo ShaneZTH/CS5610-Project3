@@ -13,4 +13,9 @@ router.post('/',function(req,res){
     res.status(204).send();
 });
 
+router.get('/',(req,res)=>{
+    console.log("my session",req.session.passport);
+    res.status(204).send();
+}
+)
 module.exports = router;

@@ -1,0 +1,16 @@
+.table-component{
+    display: relative;
+    margin: 30px 0px 30px 30px;
+    background-color: rgb(237, 231, 243,0.4);
+}
+.table thead{
+    padding: 20px;
+}
+
+
+.table th{
+    display: relative;
+    margin-left: 18px;
+    font-size: 19px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
