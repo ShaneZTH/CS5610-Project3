@@ -94,7 +94,7 @@ mongoUtil.connectToServer(() => {
 
   app.get("/user", (req, res) => {
     console.log("get session", req.user);
-    res.send(req.user); // The req.user stores the entire user that has been authenticated inside of it.
+    res.send(req.user.user); // The req.user stores the entire user that has been authenticated inside of it.
   });
 
 
