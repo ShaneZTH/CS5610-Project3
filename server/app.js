@@ -4,13 +4,11 @@ const cookieParser = require("cookie-parser");
 const app = express();
 const session = require("express-session");
 const createError = require('http-errors');
+const path = require('path'); 
+const bodyParser = require('body-parser');
 /*  PASSPORT SETUP  */
 
 const passport = require('passport');
-
-app.use(passport.initialize());
-app.use(passport.session());
-
 
 const PORT = process.env.PORT || 8080;
 var corsOptions = {
@@ -20,27 +18,36 @@ var corsOptions = {
 };
 
 app.use(cors(corsOptions));
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(cookieParser());
+app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: false }));
 
+var memoryStore = session.MemoryStore();
 app.use(
   session({
+    name:'yay-session',
     secret: "No secrete",
     saveUninitialized: true,
-    cookie: {
+/*     cookie: {
       expires: new Date(253402300000000),
       //maxAge: 60000
-      secure: false
-    },
+      httpOnly:true,
+      secure: true
+    }, */
+    //store:memoryStore,
     resave: false
   })
 );
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 
 // parse requests of content-type - application/json
 app.use(express.json());
 
 // parse requests of content-type - application/x-www-form-urlencoded
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
@@ -61,7 +68,7 @@ app.use((req, res, next) => {
 
 let mongoUtil = require("./db/mongoUtil.js");
 mongoUtil.connectToServer(() => {
-  require("./passport/auth")(passport);
+  const passportConfig = require("./passport/auth")(passport);
   let authRouter = require("./passport/auth.js");
   let expenseRouter = require("./routes/expense.js");
 
@@ -73,21 +80,20 @@ mongoUtil.connectToServer(() => {
       if (!user){ 
         //res.send("No User Exists");
         console.log("invalid user");
-        return res.redirect("/expense");
+        return res.redirect("/");
       }
       else {
         req.logIn(user, (err) => {
           if (err) throw err;
-          res.send("Successfully Authenticated");
-          req.session.save();
           console.log("found user",req.user);
+          res.send("Successfully Authenticated");
         });
       }
     })(req, res, next);
   });
 
   app.get("/user", (req, res) => {
-    console.log("get session", req.session);
+    console.log("get session", req.user);
     res.send(req.user); // The req.user stores the entire user that has been authenticated inside of it.
   });
 

@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const mongoUtil = require("../db/mongoUtil.js");
 const db = mongoUtil.getDb();
+ObjectId = require('mongodb').ObjectID;
 
 const express = require('express')
 const app = express()
@@ -58,16 +59,22 @@ module.exports = function (passport){
 
   passport.use(new LocalStrategy(authUser));
 
-  passport.serializeUser( (user, done) => { 
+  passport.serializeUser( function(user, done){ 
     console.log(`--------> Serialize User`)
     console.log(user)     
 
-    done(null, user)
+    done(null,user._id);
   })
 
-  passport.deserializeUser((user, done) => {
+  passport.deserializeUser((id, done) => {
     console.log("---------> Deserialize Id")
-    done(null.user)
+    var o_id = new ObjectId(id)
+    db.collection("users").findOne({_id:o_id},(err,user)=>{
+      console.log("id is",o_id);
+      console.log('retrieved user',user);
+      done(err,user);
+
+    });
 
 
 }) ;
