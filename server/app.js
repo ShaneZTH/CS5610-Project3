@@ -72,6 +72,8 @@ mongoUtil.connectToServer(() => {
   let authRouter = require("./passport/auth.js");
   let expenseRouter = require("./routes/expense.js");
 
+  //app.use("/",authRouter);
+
   app.use("/expense",expenseRouter);
   // Routes
   app.post("/login", (req, res, next) => {
@@ -95,6 +97,17 @@ mongoUtil.connectToServer(() => {
   app.get("/user", (req, res) => {
     console.log("get session", req.user);
     res.send(req.user.user); // The req.user stores the entire user that has been authenticated inside of it.
+  });
+
+  app.get("/logout",(req,res,next)=>{
+    console.log("log out user",req.session);
+    req.session.destroy((err)=>{
+      if(err){
+        return next(err);
+      }
+      res.status(204).send();
+      //return res.redirect("/expense");
+    })
   });
 
 

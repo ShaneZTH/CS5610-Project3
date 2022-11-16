@@ -43,3 +43,7 @@
     margin: 20px auto;
     padding-left: 20px;
 }
+
+.save-button:hover{
+    background-color: rgb(212, 212, 226,0.8);
+}

@@ -32,3 +32,19 @@
     height: 50px;
     margin-top: 40px;
 }
+.refresh-button:hover{
+    background-color: rgb(204, 211, 218);
+}
+
+.logout-button{
+    display: block;
+    margin: 40px auto;
+    height:40px;
+    width: 120px;
+    font-size: 18px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.logout-button:hover{
+    background-color: rgb(212, 212, 226,0.8);
+}
