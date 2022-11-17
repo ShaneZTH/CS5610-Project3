@@ -6,6 +6,7 @@ const session = require("express-session");
 const createError = require('http-errors');
 const path = require('path'); 
 const bodyParser = require('body-parser');
+const proxy = require('express-http-proxy');
 /*  PASSPORT SETUP  */
 
 const passport = require('passport');
@@ -13,12 +14,12 @@ const passport = require('passport');
 const PORT = process.env.PORT || 8080;
 var corsOptions = {
   origin: "http://localhost:8081",
-  methods: ['POST', 'PUT', 'GET', 'OPTIONS', 'HEAD'],
+  methods: ['POST', 'PUT', 'GET', 'OPTIONS', 'HEAD','DELETE'],
   credentials:true
 };
 
-app.use(cors(corsOptions));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(cors(corsOptions));
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
@@ -26,15 +27,18 @@ app.use(express.urlencoded({ extended: false }));
 var memoryStore = session.MemoryStore();
 app.use(
   session({
+    key:'user-id',
     name:'yay-session',
     secret: "No secrete",
-    saveUninitialized: true,
+    saveUninitialized: false,
+    proxy:true,
 /*     cookie: {
       expires: new Date(253402300000000),
       //maxAge: 60000
-      httpOnly:true,
-      secure: true
-    }, */
+      httpOnly:false,
+      secure: true,
+      sameSite:'none'
+    },  */
     //store:memoryStore,
     resave: false
   })
@@ -62,6 +66,8 @@ app.use((req, res, next) => {
   );
   next();
 });
+
+//app.use(proxy('http://127.0.0.1:3000'));
 
 //require("./passport/auth")(passport);
 
@@ -95,8 +101,8 @@ mongoUtil.connectToServer(() => {
   });
 
   app.get("/user", (req, res) => {
-    console.log("get session", req.user);
-    res.send(req.user.user); // The req.user stores the entire user that has been authenticated inside of it.
+    console.log("get session", req.user.user);
+    res.status(204).send(req.user.user); // The req.user stores the entire user that has been authenticated inside of it.
   });
 
   app.get("/logout",(req,res,next)=>{

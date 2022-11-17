@@ -72,7 +72,7 @@ function StatusTable(){
                     <tr>
                         <td>Clothes & Makeup</td>
                         <td></td>
-                        <td>{cateMap.get("grocery")}</td>
+                        <td>{cateMap.get("clothes")}</td>
 
                     </tr>
                     <tr>

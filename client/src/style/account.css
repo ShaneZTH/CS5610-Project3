@@ -48,3 +48,14 @@
 .logout-button:hover{
     background-color: rgb(212, 212, 226,0.8);
 }
+
+.reset-button{
+    margin-left: 20px;
+    height: 50px;
+    margin-top: 40px;
+}
+
+.reset-img{
+    width:40px;
+    height: 40px;
+}

@@ -4,10 +4,28 @@ import '../style/account.css';
 import ExpenseForm from '../components/expenseForm';
 import StatusTable from '../components/statusTable';
 import refresh_img from '../images/refresh.jpeg';
+import reset_img from '../images/reset-img.jpeg';
 function Dashboard(props){
     const navigate = useNavigate();
-    const [username,setUsername] = useState(()=>props.username);
+    const [username,setUsername] = useState("");
     const handleclick=()=>{
+        window.location.reload();
+    };
+
+    const handleReset=async(e)=>{
+        e.preventDefault();
+        const deleteURL = "http://localhost:8080/expense";
+        fetch(deleteURL,{
+            credentials:'include',
+            method:'DELETE',
+            headers:{
+                'Content-Type':'application/json',
+            },
+        }).then((response)=>{
+            alert("Successfully reset current status");
+        }).catch((err)=>{
+            console.log(err);
+        })
         window.location.reload();
     };
 
@@ -39,16 +57,19 @@ function Dashboard(props){
             headers:{
                 'Content-Type':'application/json',
             },
-            }).then((res)=>{
-            return res.text();
+            }).
+            then((res)=>{
+                console.log(res);
+                if(!res.ok){
+                    //window.location.reload();
+                    return new Error(res.statusText);
+                }
+                return res.text();
             })
             .then((data)=>{
                 console.log(data);
-            //var json_data = JSON.parse(data);
-                if(typeof data === 'string'){
-                    setUsername(data);
-                }
-            }); */
+                setUsername(data);               
+            });  */
         console.log(window.localStorage.getItem('name'));
         setUsername(window.localStorage.getItem('name'));
       }, []); 
@@ -59,6 +80,7 @@ function Dashboard(props){
             <div className='status-div'>
                 <h2 className='status-text'>Current Status</h2>
                 <button className='refresh-button' onClick={handleclick}><img src={refresh_img} alt='' className='refresh-img'/></button>
+                <button className='reset-button' onClick={handleReset}><img src={reset_img} alt='' className='reset-img'/></button>
             </div>
             <StatusTable className='curr-table'/>
             <button className='logout-button' onClick={handleLogout}>Log Out</button>
