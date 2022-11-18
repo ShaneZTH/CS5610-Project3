@@ -83,6 +83,11 @@ function Dashboard(props){
                 <button className='reset-button' onClick={handleReset}><img src={reset_img} alt='' className='reset-img'/></button>
             </div>
             <StatusTable className='curr-table'/>
+
+            <div className='warning-div'>
+                <h2 className='status-text'>My Warnings</h2>
+                <button className='refresh-button' onClick={handleclick}><img src={refresh_img} alt='' className='refresh-img'/></button>
+            </div>
             <button className='logout-button' onClick={handleLogout}>Log Out</button>
         </div>
     );

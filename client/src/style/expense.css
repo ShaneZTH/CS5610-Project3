@@ -1,3 +1,11 @@
+h4{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: rgb(12, 25, 69);
+    font-size: 7px;
+    margin-left: 1.6em;
+    margin-top: 2em;
+}
+
 .expense-form{
     margin:40px auto;
     display: flex;
