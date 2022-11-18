@@ -10,6 +10,8 @@ function StatusTable(){
     const [budgetMap,usebudgetMap] = useState(new Map());
     const percentage = 50;
     const [progressMap, useprogressMap] = useState(new Map());
+    const [totalSpending, usetotalSpending] = useState(0);
+    const [totalBudget, usetotalBudget] = useState(0);
 
     const getCategories = ()=>{
         const getURL = "http://localhost:8080/expense";
@@ -25,9 +27,11 @@ function StatusTable(){
             var data_arr = JSON.parse(data);
             var categoryList = [];
             var categoryMap = new Map();
+            var total_spend = 0;
             for(var i=0;i<data_arr.length;i++){
                 const category = data_arr[i]['category'];
                 const amount = parseInt(data_arr[i]['amount']);
+                total_spend += amount;
                 if(categoryMap.has(category)){
                     var curr_amount = categoryMap.get(category);
                     console.log("amount is:",amount);
@@ -37,7 +41,8 @@ function StatusTable(){
                 }
             }
             usecateMap(categoryMap);
-            console.log(cateMap);
+            usetotalSpending(total_spend);
+            //console.log(cateMap);
         });
     };
 
@@ -54,9 +59,11 @@ function StatusTable(){
         }).then((data)=>{
             var data_arr = JSON.parse(data);
             var budMap = new Map();
+            var total_bud = 0;
             for(var i=0;i<data_arr.length;i++){
                 const category = data_arr[i]['category'];
                 const amount = parseInt(data_arr[i]['amount']);
+                total_bud +=amount;
                 if(budMap.has(category)){
                     var curr_amount = budMap.get(category);
                     budMap.set(category,curr_amount+amount);
@@ -65,6 +72,7 @@ function StatusTable(){
                 }
             }
             usebudgetMap(budMap);
+            usetotalBudget(total_bud);
         });
 
     };
@@ -87,12 +95,11 @@ function StatusTable(){
     useEffect(()=>{
         getCategories();
         getBudgetMap();
-        getProgress();
         console.log(progressMap);
     },[]);
     return(
         <div>
-            <h4>Overall Spending: </h4>
+            <h4>Overall Spending: {Math.floor(100*totalSpending/totalBudget)+'%'}</h4>
             <Table className='table-component'>
                 <thead>
                     <tr className='table'>
