@@ -7,11 +7,11 @@ function Records({ records }) {
     <table>
       <thead>
         <tr>
-          <th>Date</th>
-          <th>Category</th>
-          <th>Item</th>
-          <th>Cost</th>
-          <th>Modify Record</th> // where you'll put the edit button
+          <th scope="col">Date</th>
+          <th scope="col">Category</th>
+          <th scope="col">Item</th>
+          <th scope="col">Cost</th>
+          <th scope="col">Modify Record</th>
         </tr>
       </thead>
       <tbody>

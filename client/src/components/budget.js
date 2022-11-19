@@ -44,24 +44,6 @@ function Budget() {
         <div>
           <Records records={records} onUpdateRecords={onUpdateRecords} />
         </div>
-
-        <div className="floatingButtonWrap">
-          <div className="floatingButtonInner">
-            <a href="#" className="floatingButton">
-              <i className="fa fa-plus icon-default"></i>
-            </a>
-            <ul className="floatingMenu">
-              <li>
-                <a href="#">Add Record</a>
-              </li>
-              <li>
-                <a href="https://google.com" target="_blank">
-                  Go To Google
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
       </div>
     </div>
   );

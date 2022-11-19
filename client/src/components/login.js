@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
-import "../style/login.css";
+import "../stylesheets/login.css";
 import save_img from "../images/save.jpg";
 function Login({ updateUser }) {
   const navigate = useNavigate();
