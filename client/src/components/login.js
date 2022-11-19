@@ -57,7 +57,7 @@ function Login({updateUser}){
             </ul>
             <button type="submit" className='login-button'>Log In</button>
         </form>
-        <h3>An account will be automatically registered for new user</h3>
+        <h3>An account will be automatically registered for new user, which may take ~2 seconds</h3>
     </div>
     <div>
         <img src={save_img} alt='' className='pig-img'/>

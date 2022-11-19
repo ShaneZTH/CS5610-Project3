@@ -11,16 +11,14 @@ const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
 
 
-const authUser =(username,password,done)=>{
+const authUser = (username,password,done)=>{
     // Authenticate the User
     const query = { user: username };
-    db.collection("users").findOne(query, (err, results) => {
+    db.collection("users").findOne(query, async (err, results) => {
       if (err) throw err;
       console.log("results: ", results);
   
-      if (results) {
-        //console.log("User does not exist");
-  
+      if (results) {  
         // Check password
         if (results.password != password) {
           //res.status(401).send("Invalid username or password");
@@ -45,14 +43,14 @@ const authUser =(username,password,done)=>{
           .catch((err) => {
             console.error(err || `Error occurred when inserting data=${data}.`);
           });
-        db.collection("users").findOne(query,(err,user)=>{
+        
+        //await setTimeout(3000);
+        db.collection("users").findOne(query,async (err,user)=>{
+          await console.log("found user after registry",user);
           return done(null,user);
-        })
-        
-        
+        });       
       }
     });
-    //return done(null,results);
 }
 
 module.exports = function (passport){

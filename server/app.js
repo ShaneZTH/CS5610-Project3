@@ -78,11 +78,13 @@ mongoUtil.connectToServer(() => {
   let authRouter = require("./passport/auth.js");
   let expenseRouter = require("./routes/expense.js");
   let budgetRouter = require("./routes/budget.js");
+  let rankRouter = require("./routes/rank.js");
 
   //app.use("/",authRouter);
 
   app.use("/expense",expenseRouter);
   app.use("/budget",budgetRouter);
+  app.use("/rank",rankRouter);
   // Routes
   app.post("/login", (req, res, next) => {
     passport.authenticate("local", (err, user, info) => {

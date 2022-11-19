@@ -8,10 +8,9 @@ import '../style/statusTable.css';
 function StatusTable(){
     const [cateMap, usecateMap] = useState(new Map());
     const [budgetMap,usebudgetMap] = useState(new Map());
-    const percentage = 50;
-    const [progressMap, useprogressMap] = useState(new Map());
     const [totalSpending, usetotalSpending] = useState(0);
     const [totalBudget, usetotalBudget] = useState(0);
+    const [username,setUsername] = useState("");
 
     const getCategories = ()=>{
         const getURL = "http://localhost:8080/expense";
@@ -77,29 +76,34 @@ function StatusTable(){
 
     };
 
-    const getProgress = () =>{
-        var proMap = new Map();
-        for(const category of cateMap.keys()){
-            const budget = budgetMap.get(category);
-            const spending = cateMap.get(category);
-            console.log("category is: ", category);
-            console.log("budget is: ", budget);
-            console.log("spending is: ", spending); 
-            const percentage = 100*spending/budget;
-            proMap.set(category,percentage);
-        };
-        useprogressMap(proMap);
-    }
+    const postOverall = () =>{
+        const postURL = "http://localhost:8080/rank"
+        fetch(postURL,{
+            credentials:'include',
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json',
+            },
+            body:JSON.stringify({
+                username:username,
+                overall: 100*totalSpending/totalBudget
+            })
+        }).then((res)=>{
+            return res.text();
+        }).catch(err=>console.log(err));
+    };
 
 
     useEffect(()=>{
+        setUsername(window.localStorage.getItem('name'));
+        console.log("username in status table component",username);
         getCategories();
         getBudgetMap();
-        console.log(progressMap);
+        postOverall();
     },[]);
     return(
         <div>
-            <h4>Overall Spending: {Math.floor(100*totalSpending/totalBudget)+'%'}</h4>
+            <h4>Overall Spending: <b>{Math.floor(100*totalSpending/totalBudget)>=0 && Math.floor(100*totalSpending/totalBudget)<=100?Math.floor(100*totalSpending/totalBudget)+'%':""}</b></h4>
             <Table className='table-component'>
                 <thead>
                     <tr className='table'>
