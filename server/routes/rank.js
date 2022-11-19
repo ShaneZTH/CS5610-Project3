@@ -5,7 +5,7 @@ const mongoUtil = require('../db/mongoUtil.js');
 const db = mongoUtil.getDb();
 
 router.post("/",function(req,res){
-    var collection = 'rank';
+    var collection = 'rank'+req.user.user;
     db.collection(collection).insertOne(req.body);
     console.log("post to",collection);
     res.status(204).send();

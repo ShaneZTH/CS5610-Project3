@@ -85,7 +85,6 @@ function StatusTable(){
                 'Content-Type':'application/json',
             },
             body:JSON.stringify({
-                username:username,
                 overall: 100*totalSpending/totalBudget
             })
         }).then((res)=>{

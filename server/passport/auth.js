@@ -38,17 +38,21 @@ const authUser = (username,password,done)=>{
         db.collection("users")
           .insertOne(data)
           .then((result) => {
-            console.log("User successfully created: " + result.insertedId);
+            console.log("User successfully created: " + result);
+            db.collection("users").findOne(query,async (err,user)=>{
+              await console.log("found user after registry",user);
+              return done(null,user);
+            });
           })
           .catch((err) => {
             console.error(err || `Error occurred when inserting data=${data}.`);
           });
         
         //await setTimeout(3000);
-        db.collection("users").findOne(query,async (err,user)=>{
+/*         db.collection("users").findOne(query,async (err,user)=>{
           await console.log("found user after registry",user);
           return done(null,user);
-        });       
+        });  */      
       }
     });
 }
