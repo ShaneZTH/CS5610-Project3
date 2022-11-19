@@ -5,7 +5,7 @@ import { useAsyncError } from 'react-router-dom';
 import '../style/statusTable.css';
 
 
-function StatusTable(){
+function StatusTable({updateBudget, updateSpend}){
     const [cateMap, usecateMap] = useState(new Map());
     const [budgetMap,usebudgetMap] = useState(new Map());
     const [totalSpending, usetotalSpending] = useState(0);
@@ -85,7 +85,7 @@ function StatusTable(){
                 'Content-Type':'application/json',
             },
             body:JSON.stringify({
-                overall: 100*totalSpending/totalBudget
+                overall: totalSpending/totalBudget
             })
         }).then((res)=>{
             return res.text();
@@ -98,8 +98,12 @@ function StatusTable(){
         console.log("username in status table component",username);
         getCategories();
         getBudgetMap();
-        postOverall();
+
     },[]);
+    postOverall();
+    updateSpend(cateMap);
+    updateBudget(budgetMap);
+
     return(
         <div>
             <h4>Overall Spending: <b>{Math.floor(100*totalSpending/totalBudget)>=0 && Math.floor(100*totalSpending/totalBudget)<=100?Math.floor(100*totalSpending/totalBudget)+'%':""}</b></h4>
