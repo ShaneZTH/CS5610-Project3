@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Table from "react-bootstrap/Table";
 import ProgressBar from "./progressBar";
 import { useAsyncError } from "react-router-dom";
-import "../style/statusTable.css";
+import "../stylesheets/statusTable.css";
 
 function StatusTable({ updateBudget, updateSpend }) {
   const [cateMap, usecateMap] = useState(new Map());

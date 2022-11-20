@@ -1,5 +1,5 @@
 import React from "react";
-import "../style/navbar.css";
+import "../stylesheets/navbar.css";
 import { Link } from "react-router-dom";
 function NavBar() {
   return (
@@ -11,17 +11,17 @@ function NavBar() {
       </li>
       <li>
         <Link to="/budget" className="menu">
-          Budget & Expenses
+          My Budget
         </Link>
       </li>
       <li>
         <Link to="/rank" className="menu">
-          Ranking & Tips
+          My Ranking
         </Link>
       </li>
       <li>
         <Link to="/account" className="menu">
-          My Dashboard
+          My Account
         </Link>
       </li>
     </div>
