@@ -85,6 +85,7 @@ function StatusTable({updateBudget, updateSpend}){
                 'Content-Type':'application/json',
             },
             body:JSON.stringify({
+                username:window.localStorage.getItem('name'),
                 overall: totalSpending/totalBudget
             })
         }).then((res)=>{
