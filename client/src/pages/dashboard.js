@@ -97,8 +97,8 @@ function Dashboard(){
       }, []); 
     return(
         <div className='dashboard-page'>
-            <h2 className='greeting'>Hi {username}, let's start saving today!</h2>
-            <ExpenseForm curr_user={username}/>
+{/*             <h2 className='greeting'>Hi {username}, let's start saving today!</h2>
+            <ExpenseForm curr_user={username}/> */}
             <div className='status-div'>
                 <h2 className='status-text'>Current Status</h2>
                 <button className='refresh-button' onClick={handleclick}><img src={refresh_img} alt='' className='refresh-img'/></button>
