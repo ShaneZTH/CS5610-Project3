@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "../style/expense.css";
+import "../stylesheets/expense.css";
 function ExpenseForm(props) {
   var [Category, setCategory] = useState();
   var [amount, setAmount] = useState();

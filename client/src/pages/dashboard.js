@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import "../style/account.css";
+import "../stylesheets/account.css";
 import ExpenseForm from "../components/expenseForm";
 import StatusTable from "../components/statusTable";
 import refresh_img from "../images/refresh.jpeg";
