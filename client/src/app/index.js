@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 //import { BrowserRouter as Router } from 'react-router-dom'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "../App.css";
-//import { NavBar } from '../components'
+
 import NavBar from "../components/navbar";
 import Login from "../components/login";
 import Footer from "../components/footer";
@@ -10,7 +10,8 @@ import Dashboard from "../pages/dashboard";
 import Rank from "../pages/rank";
 import Budget from "../pages/budget";
 // import background from "../images/bg-img.jpeg"
-// import { Image } from 'primereact/image';
+// import { NavBar, Login } from "../components";
+import RecordPage from "../pages/RecordPage";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -38,7 +39,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Login updateUser={updateUser} />} />
           <Route path="/account" element={<Dashboard username={name} />} />
-          <Route path="/budget" element={<Budget />} />
+          <Route path="/budget" element={<RecordPage />} />
           <Route path="/rank" element={<Rank />} />
         </Routes>
       </Router>

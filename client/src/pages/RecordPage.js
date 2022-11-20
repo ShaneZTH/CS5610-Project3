@@ -1,20 +1,14 @@
 import React, { useState } from "react";
 
 import FabForm from "../components/FabForm";
-import "../stylesheets/budget.css";
-import Records from "../components/Records";
+import RecordList from "../components/RecordList";
 
 function RecordPage() {
   return (
     <div>
       <h2>Budget</h2>
-      <div className="budget">
-        <div className="container">
-          <div>
-            <Records records={records} onUpdateRecords={onUpdateRecords} />
-          </div>
-        </div>
-      </div>
+      <RecordList></RecordList>
+      <FabForm></FabForm>
     </div>
   );
 }

@@ -1,10 +1,9 @@
-import React from "react";
-import { useState, useEffect } from "react";
-import "../stylesheets/budget.css";
+import React, { useState, useEffect } from "react";
+import "../stylesheets/recordList.css";
 import Records from "./Records";
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 
-function Budget() {
+function RecordList() {
   const [records, setRecords] = useState([]);
 
   async function reloadData() {
@@ -39,7 +38,7 @@ function Budget() {
   }
 
   return (
-    <div className="budget">
+    <div className="recordList">
       <div className="container">
         <div>
           <Records records={records} onUpdateRecords={onUpdateRecords} />
@@ -48,4 +47,6 @@ function Budget() {
     </div>
   );
 }
-export default Budget;
+
+RecordList.prototype = {};
+export default RecordList;
