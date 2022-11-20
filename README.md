@@ -14,7 +14,11 @@
 
 ## Project Objective
 
-TBD
+### Progress By Now
+- Login funtionality using Passport.js
+- Allow users to input spending and store data in MongoDB
+- Frontend Design for dashboard
+
 
 ## Instructions to build
 

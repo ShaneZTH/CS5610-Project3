@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "../style/expense.css";
 function ExpenseForm(props) {
+  const navigate = useNavigate();
   var [Category, setCategory] = useState();
   var [amount, setAmount] = useState();
   const updateCategory = (e) => {
@@ -32,10 +34,14 @@ function ExpenseForm(props) {
       .then((res) => {
         if (!res.ok) {
           console.log(res);
-          throw new Error(res.statusText);
+          alert("Log in first to proceed");
+          navigate("/");
+          return new Error(res.statusText);
         }
         const string = res.text();
         console.log(res);
+        navigate("/account");
+        window.location.reload();
         return string;
       })
       .catch((err) => console.log(err));

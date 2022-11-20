@@ -17,7 +17,7 @@ function Login({ updateUser }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const postURL = "http://localhost:8080/login";
-    navigate("/account");
+    navigate("/budget");
     fetch(postURL, {
       credentials: "include",
       method: "POST",
@@ -25,8 +25,8 @@ function Login({ updateUser }) {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        myname: name,
-        mypassword: password
+        username: name,
+        password: password
       })
     })
       .then((response) => {
@@ -61,7 +61,10 @@ function Login({ updateUser }) {
             Log In
           </button>
         </form>
-        <h3>An account will be automatically registered for new user</h3>
+        <h3>
+          An account will be automatically registered for new user, which may
+          take ~2 seconds
+        </h3>
       </div>
       <div>
         <img src={save_img} alt="" className="pig-img" />
