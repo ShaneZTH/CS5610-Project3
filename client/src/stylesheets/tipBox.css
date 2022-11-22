@@ -1,0 +1,24 @@
+.tipBox-wrapper {
+  width: 100%;
+  margin-left: 3rem;
+}
+
+textarea {
+  display: block;
+  align-items: center;
+  min-height: 100px;
+  min-width: 400px;
+  height: 4rem;
+  width: 40%;
+  padding-left: 0.3rem;
+  padding-right: 0.3rem;
+  padding-top: 0.2rem;
+}
+
+.tipBox-wrapper .saveBtn {
+  padding: 0.1rem;
+}
+
+.tipBox-wrapper button {
+  align-items: right;
+}

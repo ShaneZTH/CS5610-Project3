@@ -1,5 +1,4 @@
 const myDB = require("../db/myMongoDb.js");
-// import myDB from "../db/myMongoDb.js";
 
 const FAKE_USER = "test"; // TODO: remove later
 
