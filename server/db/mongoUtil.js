@@ -7,13 +7,13 @@ const db_name = "savepiggie";
 module.exports = {
   connectToServer: function (callback) {
     MongoClient.connect(uri, (err, client) => {
-        if(err){
-            console.log(err);
-        }else{
-            _db = client.db(db_name);
-            console.log("connected to: ",db_name);
-            return callback(err);
-        }
+      if (err) {
+        console.log(err);
+      } else {
+        _db = client.db(db_name);
+        console.log("connected to: ", db_name);
+        return callback(err);
+      }
     });
   },
 

@@ -1,5 +1,4 @@
 const myDB = require("../db/myMongoDb.js");
-// import myDB from "../db/myMongoDb.js";
 
 const FAKE_USER = "test"; // TODO: remove later
 
@@ -17,7 +16,7 @@ exports.addRecord = async (req, res) => {
     user: user,
     category: req.body.category,
     item: req.body.item,
-    cost: req.body.cost,
+    cost: req.body.cost
   };
 
   const spendings = await myDB.createSpendingRecord(data);
@@ -38,7 +37,7 @@ exports.search = async (req, res) => {
 
   let query = {
     user: user,
-    key: val,
+    key: val
   };
 
   const spendings = await myDB.searchSpendingRecord(query);
@@ -56,6 +55,17 @@ exports.getUser = async (req, res) => {
   }
 
   const query = { user: user };
-  const spendings = await myDB.searchSpendingRecord(query);
-  res.json(spendings);
+  try {
+    const spendings = await myDB.searchSpendingRecord(query);
+    res.status(200).json({ spendings, msg: "Query successful" });
+  } catch (e) {
+    console.log("Error in db", e);
+    res.status(300).json({
+      propositions: [],
+      msg: "Error in the query",
+      error: true,
+      errorObj: JSON.stringify(e)
+    });
+  }
+  // res.json(spendings);
 };
