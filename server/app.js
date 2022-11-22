@@ -9,8 +9,9 @@ const createError = require("http-errors");
 const path = require("path");
 const bodyParser = require("body-parser");
 const proxy = require("express-http-proxy");
-/*  PASSPORT SETUP  */
 
+require("dotenv").config();
+/*  PASSPORT SETUP  */
 const passport = require("passport");
 
 const PORT = process.env.PORT || 8080;
@@ -35,14 +36,14 @@ app.use(
     secret: "No secrete",
     saveUninitialized: false,
     proxy: true,
-    /*     cookie: {
+    cookie: {
       expires: new Date(253402300000000),
       //maxAge: 60000
-      httpOnly:false,
+      httpOnly: false,
       secure: true,
-      sameSite:'none'
-    },  */
-    //store:memoryStore,
+      sameSite: "none"
+    },
+    store: memoryStore,
     resave: false
   })
 );
@@ -54,9 +55,7 @@ app.use(passport.session());
 app.use(express.json());
 
 // parse requests of content-type - application/x-www-form-urlencoded
-
 app.use(express.urlencoded({ extended: true })); // TODO: do we need true / false here?
-require("dotenv").config();
 
 // Set Favicon
 app.get("/favicon.ico", (req, res) => {
@@ -75,8 +74,10 @@ app.get("/", (req, res) => {
 ////////////////////////////////////
 
 let spendingRouter = require("./routes/spending-router");
+let tipRouter = require("./routes/tipRoutes");
 
 app.use("/api/spending", spendingRouter);
+app.use("/api/tip", tipRouter);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
