@@ -14,10 +14,18 @@
 
 ## Project Objective
 
-### Progress By Now
+### Progress By Now (Nov 22nd)
 - Login funtionality using Passport.js
+![login page](client/src/images/login-page.png)
 - Allow users to input spending and store data in MongoDB
-- Frontend Design for dashboard
+![budget page](client/src/images/budget-page.png)
+- Dashboard shows current status, including progress bar showing spending 
+percentage to budget
+![status table](client/src/images/status-table.png)
+
+- Warnings when budget is exceeded
+![warning](client/src/images/warnings.png)
+
 
 
 ## Instructions to build
