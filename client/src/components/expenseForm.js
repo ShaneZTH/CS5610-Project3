@@ -1,5 +1,6 @@
 import React,{useState,useEffect} from "react";
 import {useNavigate} from 'react-router-dom';
+import PropTypes from 'prop-types';
 import '../style/expense.css';
 function ExpenseForm(props){
     const navigate = useNavigate();
@@ -76,5 +77,11 @@ function ExpenseForm(props){
         </div>
     );
 }
+
+ExpenseForm.propTypes = {
+    curr_user: PropTypes.string
+}
+
+
 
 export default ExpenseForm;

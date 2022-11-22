@@ -3,7 +3,7 @@ import Table from 'react-bootstrap/Table';
 import ProgressBar from './progressBar';
 import { useAsyncError } from 'react-router-dom';
 import '../style/statusTable.css';
-
+import PropTypes from 'prop-types';
 
 function StatusTable({updateBudget, updateSpend}){
     const [cateMap, usecateMap] = useState(new Map());
@@ -173,5 +173,10 @@ function StatusTable({updateBudget, updateSpend}){
         </div>
     );
 
+}
+
+StatusTable.propTypes={
+    updateBudget:PropTypes.func,
+    updateSpend:PropTypes.func
 }
 export default StatusTable;

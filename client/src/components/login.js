@@ -2,6 +2,8 @@ import {useNavigate} from 'react-router-dom';
 import React,{useState,useEffect} from 'react';
 import '../style/login.css';
 import save_img from '../images/save.jpg';
+import PropTypes from 'prop-types';
+
 function Login({updateUser}){
     const navigate = useNavigate();
     var [name,setName]=useState();
@@ -64,6 +66,10 @@ function Login({updateUser}){
     </div>
     </div>
     );
+}
+
+Login.propTypes = {
+    updateUser:PropTypes.func
 }
 
 export default Login;
