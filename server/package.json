@@ -1,22 +1,14 @@
 {
-  "name": "myapp",
-  "version": "1.0.0",
-  "description": "### Authors:",
-  "main": "index.js",
+  "name": "spending-tracker",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon app.js --ignore client"
+    "dev": "nodemon app.js",
+    "dev2": "nodemon app.js --ignore client"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ShaneZTH/CS5610-Project3.git"
-  },
-  "author": "Taohan Zhu",
+  "author": "Shane Zhu & Eileen Zhang",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/ShaneZTH/CS5610-Project3/issues"
-  },
-  "homepage": "https://github.com/ShaneZTH/CS5610-Project3#readme",
   "dependencies": {
     "body-parser": "^1.20.1",
     "cookie-parser": "^1.4.6",
