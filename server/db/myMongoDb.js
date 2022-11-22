@@ -1,9 +1,9 @@
+// import { MongoClient } from "mongodb";
 const { MongoClient } = require("mongodb");
 
 function myMongoDb() {
   const myDB = {};
   const uri = process.env.MONGODB_URI || "mongodb://localhost:27017";
-  console.log("uri ", uri);
   const DB_NAME = "PROJECT-3";
 
   const COLLECTION_SPENDING = "spending";
