@@ -5,7 +5,11 @@
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js",
-    "dev2": "nodemon app.js --ignore client"
+    "dev2": "nodemon app.js --ignore client",
+    "build": "npm run build --prefix client",
+    "server": "nodemon",
+    "client": "npm start --prefix client",
+    "prod": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "Shane Zhu & Eileen Zhang",
   "license": "MIT",
@@ -26,6 +30,7 @@
     "sass": "^1.55.0"
   },
   "devDependencies": {
+    "concurrently": "^7.6.0",
     "eslint-config-prettier": "^8.5.0",
     "nodemon": "^2.0.20",
     "prettier": "^2.7.1"
