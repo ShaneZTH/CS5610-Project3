@@ -6,10 +6,12 @@
     "start": "node app.js",
     "dev": "nodemon app.js",
     "dev2": "nodemon app.js --ignore client",
-    "build": "npm run build --prefix client",
+    "client-build": "npm install --prefix client",
+    "server-build": "npm install",
+    "build": "concurrently \"npm run server-build\" \"npm run client-build\"",
     "server": "nodemon",
     "client": "npm start --prefix client",
-    "prod": "concurrently \"npm run server\" \"npm run client\""
+    "prod": "concurrently \"npm run client\" \"npm run server\""
   },
   "author": "Shane Zhu & Eileen Zhang",
   "license": "MIT",
@@ -27,6 +29,7 @@
     "morgan": "~1.9.1",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
+    "react-scripts": "^5.0.1",
     "sass": "^1.55.0"
   },
   "devDependencies": {

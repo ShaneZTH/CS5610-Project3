@@ -3,33 +3,26 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const app = express();
 
-// TODO: Resolve design conflicts
 const session = require("express-session");
 const createError = require("http-errors");
 const path = require("path");
 const bodyParser = require("body-parser");
 const proxy = require("express-http-proxy");
-
-require("dotenv").config();
-/*  PASSPORT SETUP  */
 const passport = require("passport");
+require("dotenv").config();
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.SERVER_PORT || 8080;
 
+// middlewares
 var corsOptions = {
   origin: "http://localhost:8081",
   methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD", "DELETE"],
   credentials: true
 };
-
-app.use(express.static(path.join(__dirname, "public")));
 app.use(cors(corsOptions));
 app.use(cookieParser());
 app.use(bodyParser.json());
-// app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, "../client/build")));
-
-var memoryStore = session.MemoryStore();
+let memoryStore = session.MemoryStore();
 app.use(
   session({
     key: "user-id",
@@ -38,8 +31,7 @@ app.use(
     saveUninitialized: false,
     proxy: true,
     cookie: {
-      expires: new Date(253402300000000),
-      //maxAge: 60000
+      maxAge: 60000,
       httpOnly: false,
       secure: true,
       sameSite: "none"
@@ -48,42 +40,6 @@ app.use(
     resave: false
   })
 );
-
-app.use(passport.initialize());
-app.use(passport.session());
-
-// parse requests of content-type - application/json
-app.use(express.json());
-
-// parse requests of content-type - application/x-www-form-urlencoded
-app.use(express.urlencoded({ extended: true })); // TODO: do we need true / false here?
-
-// Set Favicon
-app.get("/favicon.ico", (req, res) => {
-  // res.sendFile(path.join(__dirname + "/public/images/favicon.ico"));
-  // TODO: find a favicon
-  console.log("TODO");
-});
-
-// simple route
-app.get("/", (req, res) => {
-  res.json({ message: "hello world" });
-});
-
-////////////////////////////////////
-// Routing
-////////////////////////////////////
-
-let spendingRouter = require("./routes/spending-router");
-let tipRouter = require("./routes/tipRoutes");
-
-app.use("/api/spending", spendingRouter);
-app.use("/api/tip", tipRouter);
-
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}.`);
-});
-
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "http://localhost:8081");
   res.setHeader("Access-Control-Allow-Credentials", "true");
@@ -94,9 +50,27 @@ app.use((req, res, next) => {
   next();
 });
 
-//app.use(proxy('http://127.0.0.1:3000'));
+app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "../client/build")));
 
-//require("./passport/auth")(passport);
+/*  PASSPORT SETUP  */
+app.use(passport.initialize());
+app.use(passport.session());
+
+// parse requests of content-type - application/json
+app.use(express.json());
+
+// parse requests of content-type - application/x-www-form-urlencoded
+app.use(express.urlencoded({ extended: true }));
+
+////////////////////////////////////
+// Routing
+////////////////////////////////////
+
+let spendingRouter = require("./routes/spending-router");
+let tipRouter = require("./routes/tipRoutes");
+app.use("/api/spending", spendingRouter);
+app.use("/api/tip", tipRouter);
 
 let mongoUtil = require("./db/mongoUtil.js");
 mongoUtil.connectToServer(() => {
@@ -106,8 +80,6 @@ mongoUtil.connectToServer(() => {
   let budgetRouter = require("./routes/budget.js");
   let rankRouter = require("./routes/rank.js");
 
-  //app.use("/",authRouter);
-
   app.use("/expense", expenseRouter);
   app.use("/budget", budgetRouter);
   app.use("/rank", rankRouter);
@@ -116,7 +88,6 @@ mongoUtil.connectToServer(() => {
     passport.authenticate("local", (err, user, info) => {
       if (err) throw err;
       if (!user) {
-        //res.send("No User Exists");
         console.log("invalid user");
         return res.redirect("/");
       } else {
@@ -157,6 +128,15 @@ mongoUtil.connectToServer(() => {
     res.status(err.status || 500);
     res.render("error");
   });
+});
+
+// Handles any requests that don't match the ones above
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname + "/client/build/index.html"));
+});
+
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}.`);
 });
 
 module.exports = app;
