@@ -1,0 +1,16 @@
+.rank-text{
+    margin-left: 1em;
+    color: rgb(12, 25, 69);
+    margin-top: 1.5em;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-bottom: 1.5em;
+}
+
+.refresh-img{
+    width:40px;
+    height: 40px;
+}
+
+.rank-div{
+    display: flex;
+}
