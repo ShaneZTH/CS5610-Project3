@@ -118,7 +118,7 @@ mongoUtil.connectToServer(() => {
       if (!user) {
         //res.send("No User Exists");
         console.log("invalid user");
-        return res.redirect("/");
+        res.status(500).send();
       } else {
         req.logIn(user, (err) => {
           if (err) throw err;
