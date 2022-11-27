@@ -1,45 +1,38 @@
 import React, { useState, useEffect } from "react";
 import refresh_img from "../images/refresh.jpeg";
 import "../style/rank.css";
+import Alert from "react-bootstrap/Alert";
 function Rank() {
   const [userList, setuserList] = useState([]);
-  const [rank, setRank] = useState(0);
+  //const [rank, setRank] = useState(0);
   const [username, setUsername] = useState("");
   const [currspend, setCurrspend] = useState(0);
   const [percentile, setPercentile] = useState(0);
-  const [goodnews, setGoodnews] = useState(false);
+  const [oldrank, setOldrank] = useState(0);
+  const [isbetter, setisbetter] = useState(false);
+  //const [isworse, setisworse] = useState(false);
+  const [showbetter, setshowbetter] = useState(true);
+  const [showworse, setshowworse] = useState(true);
+  //const [goodnews, setGoodnews] = useState(false);
   const handleRefresh = () => {
     getAllUsers();
-    //window.location.reload();
     console.log("user list is", userList);
     for (var i = 0; i < userList.length; i++) {
       if (userList[i] == currspend) {
-        setRank(i + 1);
+        const curr_percent = (100 * (1 - (i + 1) / userList.length)).toFixed(2);
+        if (!isNaN(curr_percent) && curr_percent < 100) {
+          setPercentile(curr_percent);
+          break;
+        }
       }
     }
-    const curr_percent = 100 * (1 - rank / userList.length);
-    if (!isNaN(curr_percent) && curr_percent < 100) {
-      setPercentile(100 * (1 - rank / userList.length));
+    //getOldRank();
+    console.log("old rank is: ", oldrank);
+    console.log("curr percentile is", parseInt(percentile));
+    if (parseInt(percentile) > oldrank) {
+      setisbetter(true);
     }
-    const stored_percentile = window.localStorage.getItem("percentile");
-    console.log("stored percentile", stored_percentile);
-    console.log("curr percentile", curr_percent);
-    if (
-      isNaN(curr_percent) &&
-      curr_percent < 100 &&
-      stored_percentile < curr_percent
-    ) {
-      //console.log("curr percentile", curr_percent);
-      setGoodnews(true);
-    }
-    if (
-      !isNaN(curr_percent) &&
-      curr_percent < 100 &&
-      stored_percentile !== curr_percent
-    ) {
-      localStorage.setItem("percentile", curr_percent);
-    }
-    console.log(goodnews);
+    postRank();
   };
 
   const getAllUsers = () => {
@@ -70,14 +63,57 @@ function Rank() {
         userArr.sort(function (a, b) {
           return a - b;
         });
-        console.log("sorted arr", userArr);
+        //console.log("sorted arr", userArr);
         setuserList(userArr);
       });
+  };
+
+  const getOldRank = () => {
+    const getURL = "http://localhost:8080/rankstatus";
+    fetch(getURL, {
+      credentials: "include",
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        //console.log("res is", res);
+        return response.text();
+      })
+      .then((data) => {
+        console.log("data looks like this:", data);
+        var data_arr = JSON.parse(data);
+        const percent = parseInt(data_arr[0]["data"]["myrank"]);
+        console.log("old rank obtained", percent);
+        setOldrank(percent);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const postRank = () => {
+    const postURL = "http://localhost:8080/rankstatus";
+    console.log("post percentage is:", percentile);
+    fetch(postURL, {
+      credentials: "include",
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        myrank: percentile,
+      }),
+    })
+      .then((res) => {
+        return res.text();
+      })
+      .catch((err) => console.log(err));
   };
 
   useEffect(() => {
     console.log(window.localStorage.getItem("name"));
     setUsername(window.localStorage.getItem("name"));
+    getOldRank();
   }, []);
 
   return (
@@ -88,8 +124,29 @@ function Rank() {
           <img src={refresh_img} alt="" className="refresh-img" />
         </button>
       </div>
-      <h3>You have defeated {percentile}% users</h3>
-      {goodnews && <h4>Good job</h4>}
+      <h4>You have defeated {percentile}% users</h4>
+      {isbetter && showbetter && (
+        <Alert
+          className="alert-window"
+          variant="success"
+          onClose={() => setshowbetter(false)}
+          dismissible
+        >
+          <Alert.Heading>Keep up the good work </Alert.Heading>
+          <p>You rank is getting better 😀</p>
+        </Alert>
+      )}
+      {!isbetter && showworse && (
+        <Alert
+          className="alert-window"
+          variant="warning"
+          onClose={() => setshowworse(false)}
+          dismissible
+        >
+          <Alert.Heading>Boost your rank!</Alert.Heading>
+          <p>Looks like there are many competiters 🤣</p>
+        </Alert>
+      )}
     </div>
   );
 }

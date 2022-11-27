@@ -14,3 +14,13 @@
 .rank-div{
     display: flex;
 }
+
+h4{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: rgb(12, 25, 69);
+    margin-left: 60px;
+}
+
+.alert-window{
+    margin: 20px 40px;
+}
