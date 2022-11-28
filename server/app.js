@@ -16,7 +16,7 @@ const passport = require("passport");
 const PORT = process.env.PORT || 8080;
 
 var corsOptions = {
-  origin: "http://localhost:8081",
+  origin: "http://localhost:3000",
   methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD", "DELETE"],
   credentials: true,
 };
@@ -82,7 +82,7 @@ app.listen(process.env.PORT || PORT, () => {
 });
 
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:8081");
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
   res.setHeader("Access-Control-Allow-Credentials", "true");
   res.header(
     "Access-Control-Allow-Headers",
