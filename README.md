@@ -14,11 +14,23 @@
 
 ## Project Objective
 
-### Progress By Now
-- Login funtionality using Passport.js
-- Allow users to input spending and store data in MongoDB
-- Frontend Design for dashboard
+### Progress By Nov 15th
 
+- Client side designed and preliminary page (struct) constructed
+- Login functionality built in both client side and server side
+- Server side APIs for spending CRUD implemented and tested via Postman
+
+### Progress By Nov 22nd
+
+- Login funtionality using Passport.js
+  ![login page](client/src/images/login-page.png)
+- Allow users to input spending and store data in MongoDB
+  ![budget page](client/src/images/budget-page.png)
+- Dashboard shows current status, including progress bar showing spending
+  percentage to budget
+  ![status table](client/src/images/status-table.png)
+- Warnings when budget is exceeded
+  ![warning](client/src/images/warnings.png)
 
 ## Instructions to build
 
