@@ -20,7 +20,7 @@ function Dashboard() {
   const [parentspendMap, setparentspendMap] = useState(new Map());
   const [parentbudgetMap, setparentbudgetMap] = useState(new Map());
   const handleclick = () => {
-    window.location.reload();
+    //window.location.reload();
   };
 
   const updateSpend = (spendMap) => {
@@ -48,7 +48,7 @@ function Dashboard() {
       .catch((err) => {
         console.log(err);
       });
-    window.location.reload();
+    //window.location.reload();
   };
 
   const handleLogout = async (e) => {
