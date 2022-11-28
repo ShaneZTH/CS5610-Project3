@@ -17,7 +17,7 @@ function BudgetForm() {
     e.preventDefault();
     console.log(Category);
     console.log(amount);
-    const postURL = "http://localhost:8080/budget";
+    const postURL = "/budget";
     fetch(postURL, {
       credentials: "include",
       method: "POST",

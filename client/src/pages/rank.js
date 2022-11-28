@@ -36,7 +36,7 @@ function Rank() {
   };
 
   const getAllUsers = () => {
-    const getURL = "http://localhost:8080/rank";
+    const getURL = "/rank";
     fetch(getURL, {
       credentials: "include",
       method: "GET",
@@ -69,7 +69,7 @@ function Rank() {
   };
 
   const getOldRank = () => {
-    const getURL = "http://localhost:8080/rankstatus";
+    const getURL = "/rankstatus";
     fetch(getURL, {
       credentials: "include",
       method: "GET",
@@ -92,7 +92,7 @@ function Rank() {
   };
 
   const postRank = () => {
-    const postURL = "http://localhost:8080/rankstatus";
+    const postURL = "/rankstatus";
     console.log("post percentage is:", percentile);
     fetch(postURL, {
       credentials: "include",

@@ -33,7 +33,7 @@ function Dashboard() {
 
   const handleReset = async (e) => {
     e.preventDefault();
-    const deleteURL = "http://localhost:8080/expense";
+    const deleteURL = "/expense";
     fetch(deleteURL, {
       credentials: "include",
       method: "DELETE",
@@ -53,7 +53,7 @@ function Dashboard() {
 
   const handleLogout = async (e) => {
     e.preventDefault();
-    const getURL = "http://localhost:8080/logout";
+    const getURL = "/logout";
     fetch(getURL, {
       credentials: "include",
       method: "GET",
