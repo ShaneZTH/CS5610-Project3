@@ -27,7 +27,6 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 // app.use(express.urlencoded({ extended: false }));
 
-var memoryStore = session.MemoryStore();
 app.use(
   session({
     key: "user-id",
@@ -78,7 +77,7 @@ let spendingRouter = require("./routes/spending-router");
 
 app.use("/api/spending", spendingRouter);
 
-app.listen(PORT, () => {
+app.listen(process.env.PORT || PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
 
