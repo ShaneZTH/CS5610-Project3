@@ -6,6 +6,7 @@ const router = express.Router();
 
 router.get("/", async (req, res) => {
   console.log("GET tip called by user=" + req.user);
+  console.log("req", req);
   const user = req.user || "shane";
 
   if (!user) {
