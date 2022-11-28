@@ -102,9 +102,9 @@ function Dashboard() {
             <ExpenseForm curr_user={username}/> */}
       <div className="status-div">
         <h2 className="status-text">Current Status</h2>
-        <button className="refresh-button" onClick={handleclick}>
+        {/*         <button className="refresh-button" onClick={handleclick}>
           <img src={refresh_img} alt="" className="refresh-img" />
-        </button>
+        </button> */}
         <button className="reset-button" onClick={handleReset}>
           <img src={reset_img} alt="" className="reset-img" />
         </button>
@@ -117,9 +117,9 @@ function Dashboard() {
 
       <div className="warning-div">
         <h2 className="status-text">My Warnings</h2>
-        <button className="refresh-button" onClick={handleclick}>
+        {/*         <button className="refresh-button" onClick={handleclick}>
           <img src={refresh_img} alt="" className="refresh-img" />
-        </button>
+        </button> */}
       </div>
       <div className="alert-window">
         {showDining &&
