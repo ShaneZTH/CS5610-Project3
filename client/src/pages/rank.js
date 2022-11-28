@@ -18,7 +18,7 @@ function Rank() {
     getAllUsers();
     console.log("user list is", userList);
     for (var i = 0; i < userList.length; i++) {
-      if (userList[i] == currspend) {
+      if (userList[i] === currspend) {
         const curr_percent = (100 * (1 - (i + 1) / userList.length)).toFixed(2);
         if (!isNaN(curr_percent) && curr_percent < 100) {
           setPercentile(curr_percent);
