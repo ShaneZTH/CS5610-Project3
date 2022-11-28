@@ -42,7 +42,7 @@ function ExpenseForm(props) {
         const string = res.text();
         console.log(res);
         navigate("/account");
-        window.location.reload();
+        //window.location.reload();
         return string;
       })
       .catch((err) => console.log(err));
