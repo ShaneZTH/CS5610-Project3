@@ -5,10 +5,12 @@
   "main": "./server/app.js",
   "scripts": {
     "start": "cd ./server && node app.js",
-    "client-build": "npm install --prefix client",
-    "client-start": "npm run client-build && npm start --prefix client",
-    "server-build": "npm install --prefix server",
-    "server-start": "npm run server-build && npm start --prefix server"
+    "build-client": "npm install --prefix client",
+    "start-client": "npm start --prefix client",
+    "build-server": "npm install --prefix server",
+    "start-server": "npm start --prefix server",
+    "client": "npm run build-client && npm start --prefix client",
+    "server": "npm run build-server && npm start --prefix server"
   },
   "author": "Shane Zhu & Eileen Zhang",
   "license": "MIT",
