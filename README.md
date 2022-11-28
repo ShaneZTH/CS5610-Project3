@@ -1,4 +1,4 @@
-# Project 3: TBD
+# Project 3: Spending Tracker
 
 ### Authors:
 
@@ -10,9 +10,11 @@
 
 ### Web App URL:
 
-- Heroku: [TBD](TBD)
+- Frontend: [Render.com](https://spending-tracker-frontend.onrender.com/)
 
 ## Project Objective
+
+We want to create a web application that helps users keep track of their spending and saving on a daily basis. This app aims to let users put down their budgets, display current spending status based on budgets and send out alerts when users are spending too much.
 
 ### Progress By Nov 15th
 
@@ -35,6 +37,9 @@
 ## Instructions to build
 
 - Clone this git repository to your local computer
-- Open the working directory and install all required dependencies with `npm install`
-- Run command `node app.js` to start your local server
-- Open your browser and go to `localhost:7777` to see the website page
+- Server
+  - `cd ./server && npm install` to install all required dependencies for server side
+  - Use command `npm run start` to start the backend server
+- Client
+  - `cd ./client && npm install` to install all required dependencies for client side
+  - Use command `npm run start` to initiate the client side webpage in your localhost
