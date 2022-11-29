@@ -8,15 +8,12 @@ function BudgetForm() {
   var [amount, setAmount] = useState();
   const updateCategory = (e) => {
     setCategory(e.target.value);
-    // console.log(Category);
   };
   const updateAmount = (e) => {
     setAmount(e.target.value);
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(Category);
-    console.log(amount);
     const postURL = "/budget";
     fetch(postURL, {
       credentials: "include",
@@ -31,13 +28,11 @@ function BudgetForm() {
     })
       .then((res) => {
         if (!res.ok) {
-          console.log(res);
           alert("Log in first to proceed");
           navigate("/");
           return new Error(res.statusText);
         }
         const string = res.text();
-        console.log(res);
         navigate("/account");
         //window.location.reload();
         return string;

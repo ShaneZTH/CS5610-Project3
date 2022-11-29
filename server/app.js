@@ -3,14 +3,13 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const app = express();
 
-// TODO: Resolve design conflicts
 const session = require("express-session");
 const createError = require("http-errors");
 const path = require("path");
 const bodyParser = require("body-parser");
 const proxy = require("express-http-proxy");
-/*  PASSPORT SETUP  */
 
+/*  PASSPORT SETUP  */
 const passport = require("passport");
 require("dotenv").config();
 
@@ -48,15 +47,7 @@ app.use(passport.session());
 app.use(express.json());
 
 // parse requests of content-type - application/x-www-form-urlencoded
-
-app.use(express.urlencoded({ extended: true })); // TODO: do we need true / false here?
-
-// Set Favicon
-app.get("/favicon.ico", (req, res) => {
-  // res.sendFile(path.join(__dirname + "/public/images/favicon.ico"));
-  // TODO: find a favicon
-  console.log("TODO");
-});
+app.use(express.urlencoded({ extended: true }));
 
 // simple route
 app.get("/", (req, res) => {
@@ -66,7 +57,6 @@ app.get("/", (req, res) => {
 ////////////////////////////////////
 // Routing
 ////////////////////////////////////
-
 app.listen(process.env.PORT || PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
@@ -102,13 +92,10 @@ mongoUtil.connectToServer(() => {
     passport.authenticate("local", (err, user, info) => {
       if (err) throw err;
       if (!user) {
-        //res.send("No User Exists");
-        console.log("invalid user");
         res.status(500).send();
       } else {
         req.logIn(user, (err) => {
           if (err) throw err;
-          console.log("found user", req.user);
           res.send("Successfully Authenticated");
         });
       }
@@ -127,7 +114,6 @@ mongoUtil.connectToServer(() => {
         return next(err);
       }
       res.status(204).send();
-      //return res.redirect("/expense");
     });
   });
 

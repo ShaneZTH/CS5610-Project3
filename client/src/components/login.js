@@ -32,10 +32,7 @@ function Login({ updateUser }) {
       }),
     })
       .then((response) => {
-        //navigate("/account");
-        console.log("response for log in is", response);
         if (!response.ok) {
-          console.log("response for log in is", response);
           alert("Invalid username or password");
           navigate("/");
           throw new Error(response.statusText);

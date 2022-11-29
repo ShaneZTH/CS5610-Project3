@@ -42,7 +42,7 @@ function Dashboard() {
       },
     })
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         alert("Successfully reset current status");
       })
       .catch((err) => {
@@ -62,7 +62,7 @@ function Dashboard() {
       },
     })
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         if (response.status === 204) {
           alert("Successfully Logged Out");
           navigate("/");
@@ -70,30 +70,11 @@ function Dashboard() {
         return response.text();
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
       });
   };
   useEffect(() => {
-    /*         fetch("http://localhost:8080/user",{
-            credentials:'include',
-            method:'GET',
-            headers:{
-                'Content-Type':'application/json',
-            },
-            }).
-            then((res)=>{
-                console.log(res);
-                if(!res.ok){
-                    //window.location.reload();
-                    return new Error(res.statusText);
-                }
-                return res.text();
-            })
-            .then((data)=>{
-                console.log(data);
-                setUsername(data);               
-            });  */
-    console.log(window.localStorage.getItem("name"));
+    // console.log(window.localStorage.getItem("name"));
     //setUsername(window.localStorage.getItem("name"));
   }, []);
   return (

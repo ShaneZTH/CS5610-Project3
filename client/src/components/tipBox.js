@@ -28,7 +28,6 @@ function TipBox() {
   };
 
   function saveTip() {
-    console.log("Save Tip: ", tip);
     let uri = tipURI;
 
     const username = window.localStorage.getItem("name");
@@ -36,7 +35,6 @@ function TipBox() {
       user: username,
       tip: tip
     });
-    console.log("saveTip reqBody: " + reqBody);
 
     fetch(uri, {
       body: reqBody,
@@ -69,8 +67,7 @@ function TipBox() {
           className="outline-0 mt-2 mb-2"
           id="tip-text"
           value={tip}
-          onChange={handleChange}
-        >
+          onChange={handleChange}>
           placeholder
         </textarea>
         

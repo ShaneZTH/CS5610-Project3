@@ -33,7 +33,7 @@ function StatusTable({ updateBudget, updateSpend }) {
           total_spend += amount;
           if (categoryMap.has(category)) {
             var curr_amount = categoryMap.get(category);
-            console.log("amount is:", amount);
+            // console.log("amount is:", amount);
             categoryMap.set(category, curr_amount + amount);
           } else {
             categoryMap.set(category, amount);
@@ -65,12 +65,6 @@ function StatusTable({ updateBudget, updateSpend }) {
           const category = data_arr[i]["category"];
           const amount = parseInt(data_arr[i]["amount"]);
           total_bud += amount;
-          /* if(budMap.has(category)){
-                    var curr_amount = budMap.get(category);
-                    budMap.set(category,curr_amount+amount);
-                }else{
-                    budMap.set(category,amount);
-                } */
           budMap.set(category, amount);
         }
         usebudgetMap(budMap);
@@ -99,7 +93,7 @@ function StatusTable({ updateBudget, updateSpend }) {
 
   useEffect(() => {
     setUsername(window.localStorage.getItem("name"));
-    console.log("username in status table component", username);
+    // console.log("username in status table component", username);
     getCategories();
     getBudgetMap();
   }, []);

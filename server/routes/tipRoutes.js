@@ -9,10 +9,9 @@ const coll = "tip";
 
 router.get("/", async (req, res) => {
   const user = req.user.user;
-  console.log("GET tip called by user=" + user);
+  // console.log("GET tip called by user=" + user);
 
   const query = { user: user };
-  console.log("query ", query);
   try {
     db.collection(coll)
       .find(query)
@@ -21,7 +20,7 @@ router.get("/", async (req, res) => {
         res.status(200).json(result);
       });
   } catch (e) {
-    console.log("Error in db", e);
+    // console.log("Error in db", e);
     res.status(300).json({
       propositions: [],
       msg: "Error in the query",
@@ -32,9 +31,8 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/", async function (req, res) {
-  console.log("POST Tip: ", req.body);
+  // console.log("POST Tip: ", req.body);
   const user = req.user.user;
-  console.log("Logged in user: ", user);
 
   let data = {
     user: user,
@@ -42,7 +40,6 @@ router.post("/", async function (req, res) {
   };
 
   db.collection(coll).insertOne(data);
-
   res.status(204).send();
 });
 

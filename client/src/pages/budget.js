@@ -5,7 +5,6 @@ import "../style/budget.css";
 function Budget() {
   const [username, setUsername] = useState("");
   useEffect(() => {
-    console.log(window.localStorage.getItem("name"));
     setUsername(window.localStorage.getItem("name"));
   }, []);
   return (
