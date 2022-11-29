@@ -1,7 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import React, { useState, useEffect } from "react";
-import "../stylesheets/login.css";
+import React, { useState } from "react";
+import "../style/login.css";
 import save_img from "../images/save.jpg";
+import PropTypes from "prop-types";
+
 function Login({ updateUser }) {
   const navigate = useNavigate();
   var [name, setName] = useState();
@@ -16,28 +18,29 @@ function Login({ updateUser }) {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const postURL = "http://localhost:8080/login";
-    navigate("/budget");
+    const postURL = "/login";
+    //navigate("/budget");
     fetch(postURL, {
       credentials: "include",
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         username: name,
-        password: password
-      })
+        password: password,
+      }),
     })
       .then((response) => {
         //navigate("/account");
+        console.log("response for log in is", response);
         if (!response.ok) {
-          console.log(response);
+          console.log("response for log in is", response);
           alert("Invalid username or password");
           navigate("/");
           throw new Error(response.statusText);
         }
-        //navigate("/account");
+        navigate("/budget");
         return response.text();
       })
       .catch((err) => console.log(err));
@@ -72,5 +75,9 @@ function Login({ updateUser }) {
     </div>
   );
 }
+
+Login.propTypes = {
+  updateUser: PropTypes.func,
+};
 
 export default Login;

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Table from "react-bootstrap/Table";
 import ProgressBar from "./progressBar";
-import { useAsyncError } from "react-router-dom";
-import "../stylesheets/statusTable.css";
+import "../style/statusTable.css";
+import PropTypes from "prop-types";
 
 function StatusTable({ updateBudget, updateSpend }) {
   const [cateMap, usecateMap] = useState(new Map());
@@ -12,20 +12,19 @@ function StatusTable({ updateBudget, updateSpend }) {
   const [username, setUsername] = useState("");
 
   const getCategories = () => {
-    const getURL = "http://localhost:8080/expense";
+    const getURL = "/expense";
     fetch(getURL, {
       credentials: "include",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      method: "GET"
+      method: "GET",
     })
       .then((res) => {
         return res.text();
       })
       .then((data) => {
         var data_arr = JSON.parse(data);
-        var categoryList = [];
         var categoryMap = new Map();
         var total_spend = 0;
         for (var i = 0; i < data_arr.length; i++) {
@@ -47,13 +46,13 @@ function StatusTable({ updateBudget, updateSpend }) {
   };
 
   const getBudgetMap = () => {
-    const getURL = "http://localhost:8080/budget";
+    const getURL = "/budget";
     fetch(getURL, {
       credentials: "include",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      method: "GET"
+      method: "GET",
     })
       .then((res) => {
         return res.text();
@@ -66,12 +65,13 @@ function StatusTable({ updateBudget, updateSpend }) {
           const category = data_arr[i]["category"];
           const amount = parseInt(data_arr[i]["amount"]);
           total_bud += amount;
-          if (budMap.has(category)) {
-            var curr_amount = budMap.get(category);
-            budMap.set(category, curr_amount + amount);
-          } else {
-            budMap.set(category, amount);
-          }
+          /* if(budMap.has(category)){
+                    var curr_amount = budMap.get(category);
+                    budMap.set(category,curr_amount+amount);
+                }else{
+                    budMap.set(category,amount);
+                } */
+          budMap.set(category, amount);
         }
         usebudgetMap(budMap);
         usetotalBudget(total_bud);
@@ -79,17 +79,17 @@ function StatusTable({ updateBudget, updateSpend }) {
   };
 
   const postOverall = () => {
-    const postURL = "http://localhost:8080/rank";
+    const postURL = "/rank";
     fetch(postURL, {
       credentials: "include",
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         username: window.localStorage.getItem("name"),
-        overall: totalSpending / totalBudget
-      })
+        overall: totalSpending / totalBudget,
+      }),
     })
       .then((res) => {
         return res.text();
@@ -272,4 +272,9 @@ function StatusTable({ updateBudget, updateSpend }) {
     </div>
   );
 }
+
+StatusTable.propTypes = {
+  updateBudget: PropTypes.func,
+  updateSpend: PropTypes.func,
+};
 export default StatusTable;

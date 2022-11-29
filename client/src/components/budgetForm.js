@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import PropTypes from "prop-types";
 import "../style/expense.css";
-function ExpenseForm(props) {
+
+function BudgetForm() {
   const navigate = useNavigate();
   var [Category, setCategory] = useState();
   var [amount, setAmount] = useState();
@@ -17,10 +17,7 @@ function ExpenseForm(props) {
     e.preventDefault();
     console.log(Category);
     console.log(amount);
-    if (props.curr_user === "") {
-      alert("Log in first");
-    }
-    const postURL = "/expense";
+    const postURL = "/budget";
     fetch(postURL, {
       credentials: "include",
       method: "POST",
@@ -50,7 +47,7 @@ function ExpenseForm(props) {
   return (
     <div>
       <div className="expense-form">
-        <h3>Record your latest expenses</h3>
+        <h3>Record your monthly budget</h3>
         <form onSubmit={handleSubmit}>
           <ul>
             <li>
@@ -87,9 +84,4 @@ function ExpenseForm(props) {
     </div>
   );
 }
-
-ExpenseForm.propTypes = {
-  curr_user: PropTypes.string,
-};
-
-export default ExpenseForm;
+export default BudgetForm;

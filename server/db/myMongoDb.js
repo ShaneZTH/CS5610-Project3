@@ -87,22 +87,6 @@ function myMongoDb() {
     }
   };
 
-  // Could be replaced by search
-  // myDB.getUserSpending = async (user) => {
-  //   let client;
-  //   const query = { user: user };
-
-  //   try {
-  //     client = new MongoClient(uri);
-  //     const spendingCol = client.db(DB_NAME).collection(COLLECTION_SPENDING);
-
-  //     return await spendingCol.find(query).toArray();
-  //   } finally {
-  //     console.log("getSpending: Closing db connection");
-  //     client.close();
-  //   }
-  // };
-
   return myDB;
 }
 
