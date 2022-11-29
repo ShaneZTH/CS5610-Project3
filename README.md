@@ -38,6 +38,11 @@ We want to create a web application that helps users keep track of their spendin
 - Warnings when budget is exceeded
   ![warning](client/src/images/warnings.png)
 
+### Final Progress Since Nov 22d
+
+- Rank & Tips page shows a saving tip and current rank among all users
+![rank page](client/src/images/rankTIps.png)
+
 ## Instructions to build
 
 - Clone this git repository to your local computer
