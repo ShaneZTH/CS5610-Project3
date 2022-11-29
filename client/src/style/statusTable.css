@@ -3,26 +3,26 @@
     margin: 30px 0px 30px 30px; 
     background-color: rgb(237, 231, 243,0.4);
 } */
-table{
-    border-collapse: separate;
-    border-spacing: 20px 55px;
-    background-color: rgb(193, 200, 226, 0.4);
-    margin-left: 30px;
-    margin-top: 30px;
-    margin-right: 30px;
+table {
+  border-collapse: separate;
+  border-spacing: 20px 55px;
+  background-color: rgb(193, 200, 226, 0.4);
+  margin-left: 30px;
+  margin-top: 30px;
+  margin-right: 30px;
 }
-.table thead{
-    padding: 20px;
-}
-
-
-.table th{
-    display: relative;
-    font-size: 19px;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+.table thead {
+  padding: 20px;
 }
 
-.spend{
-    padding-left: 10px;
-    margin-left: 30px;
+.table th {
+  display: relative;
+  font-size: 19px;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+.spend {
+  padding-left: 10px;
+  margin-left: 30px;
 }

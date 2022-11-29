@@ -16,9 +16,9 @@ function StatusTable({ updateBudget, updateSpend }) {
     fetch(getURL, {
       credentials: "include",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
       },
-      method: "GET",
+      method: "GET"
     })
       .then((res) => {
         return res.text();
@@ -50,9 +50,9 @@ function StatusTable({ updateBudget, updateSpend }) {
     fetch(getURL, {
       credentials: "include",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
       },
-      method: "GET",
+      method: "GET"
     })
       .then((res) => {
         return res.text();
@@ -78,12 +78,12 @@ function StatusTable({ updateBudget, updateSpend }) {
       credentials: "include",
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({
         username: window.localStorage.getItem("name"),
-        overall: totalSpending / totalBudget,
-      }),
+        overall: totalSpending / totalBudget
+      })
     })
       .then((res) => {
         return res.text();
@@ -269,6 +269,6 @@ function StatusTable({ updateBudget, updateSpend }) {
 
 StatusTable.propTypes = {
   updateBudget: PropTypes.func,
-  updateSpend: PropTypes.func,
+  updateSpend: PropTypes.func
 };
 export default StatusTable;

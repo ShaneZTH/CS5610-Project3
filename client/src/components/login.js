@@ -24,12 +24,12 @@ function Login({ updateUser }) {
       credentials: "include",
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({
         username: name,
-        password: password,
-      }),
+        password: password
+      })
     })
       .then((response) => {
         if (!response.ok) {
@@ -74,7 +74,7 @@ function Login({ updateUser }) {
 }
 
 Login.propTypes = {
-  updateUser: PropTypes.func,
+  updateUser: PropTypes.func
 };
 
 export default Login;

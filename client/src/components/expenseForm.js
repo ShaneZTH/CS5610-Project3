@@ -22,12 +22,12 @@ function ExpenseForm(props) {
       credentials: "include",
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({
         category: Category,
-        amount: amount,
-      }),
+        amount: amount
+      })
     })
       .then((res) => {
         if (!res.ok) {
@@ -84,7 +84,7 @@ function ExpenseForm(props) {
 }
 
 ExpenseForm.propTypes = {
-  curr_user: PropTypes.string,
+  curr_user: PropTypes.string
 };
 
 export default ExpenseForm;

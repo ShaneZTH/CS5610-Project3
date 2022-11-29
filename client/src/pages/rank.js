@@ -5,19 +5,19 @@ import Alert from "react-bootstrap/Alert";
 import TipBox from "../components/tipBox";
 function Rank() {
   const [userList, setuserList] = useState([]);
-  //const [rank, setRank] = useState(0);
+
   const [username, setUsername] = useState("");
   const [currspend, setCurrspend] = useState(0);
   const [percentile, setPercentile] = useState(0);
   const [oldrank, setOldrank] = useState(0);
   const [isbetter, setisbetter] = useState(false);
-  //const [isworse, setisworse] = useState(false);
+
   const [showbetter, setshowbetter] = useState(true);
   const [showworse, setshowworse] = useState(true);
-  //const [goodnews, setGoodnews] = useState(false);
+
   const handleRefresh = () => {
     getAllUsers();
-    console.log("user list is", userList);
+    // console.log("user list is", userList);
     for (var i = 0; i < userList.length; i++) {
       if (userList[i] === currspend) {
         const curr_percent = (100 * (1 - (i + 1) / userList.length)).toFixed(2);
@@ -28,8 +28,8 @@ function Rank() {
       }
     }
     //getOldRank();
-    console.log("old rank is: ", oldrank);
-    console.log("curr percentile is", parseInt(percentile));
+    // console.log("old rank is: ", oldrank);
+    // console.log("curr percentile is", parseInt(percentile));
     if (parseInt(percentile) > oldrank) {
       setisbetter(true);
     }
@@ -42,8 +42,8 @@ function Rank() {
       credentials: "include",
       method: "GET",
       headers: {
-        "Content-Type": "application/json",
-      },
+        "Content-Type": "application/json"
+      }
     })
       .then((response) => {
         return response.text();
@@ -57,7 +57,7 @@ function Rank() {
           //const percentage = amount * 100;
           if (name === username) {
             setCurrspend(amount);
-            console.log("percentage is", amount);
+            // console.log("percentage is", amount);
           }
           userArr.push(amount);
         }
@@ -75,8 +75,8 @@ function Rank() {
       credentials: "include",
       method: "GET",
       headers: {
-        "Content-Type": "application/json",
-      },
+        "Content-Type": "application/json"
+      }
     })
       .then((response) => {
         //console.log("res is", res);
@@ -86,7 +86,7 @@ function Rank() {
         // console.log("data looks like this:", data);
         var data_arr = JSON.parse(data);
         const percent = parseInt(data_arr[0]["data"]["myrank"]);
-        console.log("old rank obtained", percent);
+        // console.log("old rank obtained", percent);
         setOldrank(percent);
       })
       .catch((err) => console.log(err));
@@ -94,16 +94,16 @@ function Rank() {
 
   const postRank = () => {
     const postURL = "/rankstatus";
-    console.log("post percentage is:", percentile);
+    // console.log("post percentage is:", percentile);
     fetch(postURL, {
       credentials: "include",
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        myrank: percentile,
-      }),
+        myrank: percentile
+      })
     })
       .then((res) => {
         return res.text();

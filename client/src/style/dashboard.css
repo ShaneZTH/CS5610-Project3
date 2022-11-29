@@ -1,75 +1,74 @@
-.greeting{
-    color: rgb(12, 25, 69);
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
-    margin-top: 1.5em;
-    margin-left: 1em;
+.greeting {
+  color: rgb(12, 25, 69);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin-top: 1.5em;
+  margin-left: 1em;
 }
 
-.status-text{
-    margin-left: 1em;
-    color: rgb(12, 25, 69);
-    margin-top: 1.5em;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    margin-bottom: 1.5em;
-    
+.status-text {
+  margin-left: 1em;
+  color: rgb(12, 25, 69);
+  margin-top: 1.5em;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin-bottom: 1.5em;
 }
 
-.curr-table{
-    margin-top: 50px;
-    margin-bottom:80px;
-    margin-left: 30px;
+.curr-table {
+  margin-top: 50px;
+  margin-bottom: 80px;
+  margin-left: 30px;
 }
-.dashboard-page{
-    margin-bottom: 90px;
+.dashboard-page {
+  margin-bottom: 90px;
 }
-.refresh-img{
-    width:40px;
-    height: 40px;
+.refresh-img {
+  width: 40px;
+  height: 40px;
 }
-.status-div{
-    display: flex;
-}
-
-.warning-div{
-    display: flex;
-}
-.refresh-button{
-    margin-left: 20px;
-    height: 50px;
-    margin-top: 40px;
-}
-.refresh-button:hover{
-    background-color: rgb(204, 211, 218);
+.status-div {
+  display: flex;
 }
 
-.reset-button:hover{
-    background-color: rgb(204, 211, 218);
+.warning-div {
+  display: flex;
+}
+.refresh-button {
+  margin-left: 20px;
+  height: 50px;
+  margin-top: 40px;
+}
+.refresh-button:hover {
+  background-color: rgb(204, 211, 218);
 }
 
-.logout-button{
-    display: block;
-    margin: 40px auto;
-    height:40px;
-    width: 120px;
-    font-size: 18px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+.reset-button:hover {
+  background-color: rgb(204, 211, 218);
 }
 
-.logout-button:hover{
-    background-color: rgb(212, 212, 226,0.8);
+.logout-button {
+  display: block;
+  margin: 40px auto;
+  height: 40px;
+  width: 120px;
+  font-size: 18px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.reset-button{
-    margin-left: 20px;
-    height: 50px;
-    margin-top: 40px;
+.logout-button:hover {
+  background-color: rgb(212, 212, 226, 0.8);
 }
 
-.reset-img{
-    width:40px;
-    height: 40px;
+.reset-button {
+  margin-left: 20px;
+  height: 50px;
+  margin-top: 40px;
 }
 
-.alert-window{
-    margin: 0 30px;
+.reset-img {
+  width: 40px;
+  height: 40px;
+}
+
+.alert-window {
+  margin: 0 30px;
 }

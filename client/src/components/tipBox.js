@@ -12,7 +12,7 @@ function TipBox() {
       method: "GET",
       credentials: "include"
     });
-    
+
     let data = await res.json();
     let userTip = data[0].tip;
     setTip(userTip);
@@ -55,11 +55,12 @@ function TipBox() {
       <div className="labelBox">
         <label>Set a Personal Saving Tip</label>
         <div className="bg-grey-light rounded-b-lg saveBtn">
-            <button
-              className="border border-grey px-2 py-1 rounded hover:bg-grey outline-0 text-grey-darkest mr-1"
-              onClick={saveTip}>
-              <span>Save</span>
-            </button>
+          <button
+            className="border border-grey px-2 py-1 rounded hover:bg-grey outline-0 text-grey-darkest mr-1"
+            onClick={saveTip}
+          >
+            <span>Save</span>
+          </button>
         </div>
       </div>
       <div className="rounded-lg">
@@ -67,10 +68,10 @@ function TipBox() {
           className="outline-0 mt-2 mb-2"
           id="tip-text"
           value={tip}
-          onChange={handleChange}>
+          onChange={handleChange}
+        >
           placeholder
         </textarea>
-        
       </div>
     </div>
   );

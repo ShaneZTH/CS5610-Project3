@@ -16,7 +16,7 @@ function Dashboard() {
   const [showOther, setshowOther] = useState(true);
 
   const navigate = useNavigate();
-  //const [username, setUsername] = useState("");
+
   const [parentspendMap, setparentspendMap] = useState(new Map());
   const [parentbudgetMap, setparentbudgetMap] = useState(new Map());
   const handleclick = () => {
@@ -38,8 +38,8 @@ function Dashboard() {
       credentials: "include",
       method: "DELETE",
       headers: {
-        "Content-Type": "application/json",
-      },
+        "Content-Type": "application/json"
+      }
     })
       .then((response) => {
         // console.log(response);
@@ -58,11 +58,10 @@ function Dashboard() {
       credentials: "include",
       method: "GET",
       headers: {
-        "Content-Type": "application/json",
-      },
+        "Content-Type": "application/json"
+      }
     })
       .then((response) => {
-        // console.log(response);
         if (response.status === 204) {
           alert("Successfully Logged Out");
           navigate("/");
@@ -73,10 +72,7 @@ function Dashboard() {
         console.error(err);
       });
   };
-  useEffect(() => {
-    // console.log(window.localStorage.getItem("name"));
-    //setUsername(window.localStorage.getItem("name"));
-  }, []);
+  useEffect(() => {}, []);
   return (
     <div className="dashboard-page">
       {/*             <h2 className='greeting'>Hi {username}, let's start saving today!</h2>
@@ -98,126 +94,123 @@ function Dashboard() {
 
       <div className="warning-div">
         <h2 className="status-text">My Warnings</h2>
-        {/*         <button className="refresh-button" onClick={handleclick}>
-          <img src={refresh_img} alt="" className="refresh-img" />
-        </button> */}
       </div>
       <div className="alert-window">
         {showDining &&
           parentspendMap.get("dining") / parentbudgetMap.get("dining") >= 1 && (
-            <Alert
-              variant="danger"
-              onClose={() => setShowDining(false)}
-              dismissible
-            >
-              <Alert.Heading>Dining Budget Exceeded!</Alert.Heading>
-              <p>
+          <Alert
+            variant="danger"
+            onClose={() => setShowDining(false)}
+            dismissible
+          >
+            <Alert.Heading>Dining Budget Exceeded!</Alert.Heading>
+            <p>
                 Start controling your spending in dining or you won't have
                 enough money by the end of month.
-              </p>
-            </Alert>
-          )}
+            </p>
+          </Alert>
+        )}
       </div>
       <div className="alert-window">
         {showGrocery &&
           parentspendMap.get("grocery") / parentbudgetMap.get("grocery") >=
             1 && (
-            <Alert
-              variant="danger"
-              onClose={() => setshowGrocery(false)}
-              dismissible
-            >
-              <Alert.Heading>Grocery Budget Exceeded!</Alert.Heading>
-              <p>
+          <Alert
+            variant="danger"
+            onClose={() => setshowGrocery(false)}
+            dismissible
+          >
+            <Alert.Heading>Grocery Budget Exceeded!</Alert.Heading>
+            <p>
                 Start controling your spending in grocery shopping or you won't
                 have enough money by the end of month. 😢
-              </p>
-            </Alert>
-          )}
+            </p>
+          </Alert>
+        )}
       </div>
       <div className="alert-window">
         {showEnt &&
           parentspendMap.get("entertainment") /
             parentbudgetMap.get("entertainment") >=
             1 && (
-            <Alert
-              variant="danger"
-              onClose={() => setshowEnt(false)}
-              dismissible
-            >
-              <Alert.Heading>Entertainment Budget Exceeded!</Alert.Heading>
-              <p>
+          <Alert
+            variant="danger"
+            onClose={() => setshowEnt(false)}
+            dismissible
+          >
+            <Alert.Heading>Entertainment Budget Exceeded!</Alert.Heading>
+            <p>
                 Start controling your spending in entertainment or you won't
                 have enough money by the end of month. 😢
-              </p>
-            </Alert>
-          )}
+            </p>
+          </Alert>
+        )}
       </div>
       <div className="alert-window">
         {showClothes &&
           parentspendMap.get("clothes") / parentbudgetMap.get("clothes") >=
             1 && (
-            <Alert
-              variant="danger"
-              onClose={() => setshowClothes(false)}
-              dismissible
-            >
-              <Alert.Heading>Clothes & Makeup Budget Exceeded!</Alert.Heading>
-              <p>
+          <Alert
+            variant="danger"
+            onClose={() => setshowClothes(false)}
+            dismissible
+          >
+            <Alert.Heading>Clothes & Makeup Budget Exceeded!</Alert.Heading>
+            <p>
                 Start controling your spending in clothes & makeup or you won't
                 have enough money by the end of month. 😢
-              </p>
-            </Alert>
-          )}
+            </p>
+          </Alert>
+        )}
       </div>
       <div className="alert-window">
         {showTravel &&
           parentspendMap.get("travel") / parentbudgetMap.get("travel") >= 1 && (
-            <Alert
-              variant="danger"
-              onClose={() => setshowTravel(false)}
-              dismissible
-            >
-              <Alert.Heading>Travel Budget Exceeded!</Alert.Heading>
-              <p>
+          <Alert
+            variant="danger"
+            onClose={() => setshowTravel(false)}
+            dismissible
+          >
+            <Alert.Heading>Travel Budget Exceeded!</Alert.Heading>
+            <p>
                 Start controling your spending in traveling or you won't have
                 enough money by the end of month. 😢
-              </p>
-            </Alert>
-          )}
+            </p>
+          </Alert>
+        )}
       </div>
       <div className="alert-window">
         {showMed &&
           parentspendMap.get("medicene") / parentbudgetMap.get("medicene") >=
             1 && (
-            <Alert
-              variant="danger"
-              onClose={() => setshowMed(false)}
-              dismissible
-            >
-              <Alert.Heading>Medication Budget Exceeded!</Alert.Heading>
-              <p>
+          <Alert
+            variant="danger"
+            onClose={() => setshowMed(false)}
+            dismissible
+          >
+            <Alert.Heading>Medication Budget Exceeded!</Alert.Heading>
+            <p>
                 Start controling your spending in medication or you won't have
                 enough money by the end of month. 😢
-              </p>
-            </Alert>
-          )}
+            </p>
+          </Alert>
+        )}
       </div>
       <div className="alert-window">
         {showOther &&
           parentspendMap.get("others") / parentbudgetMap.get("others") >= 1 && (
-            <Alert
-              variant="danger"
-              onClose={() => setshowOther(false)}
-              dismissible
-            >
-              <Alert.Heading>Other Budget Exceeded!</Alert.Heading>
-              <p>
+          <Alert
+            variant="danger"
+            onClose={() => setshowOther(false)}
+            dismissible
+          >
+            <Alert.Heading>Other Budget Exceeded!</Alert.Heading>
+            <p>
                 Start controling your spending in others or you won't have
                 enough money by the end of month. 😢
-              </p>
-            </Alert>
-          )}
+            </p>
+          </Alert>
+        )}
       </div>
 
       <button className="logout-button" onClick={handleLogout}>
