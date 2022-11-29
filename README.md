@@ -42,6 +42,7 @@ We want to create a web application that helps users keep track of their spendin
 
 - Rank & Tips page shows a saving tip and current rank among all users
 ![rank page](client/src/images/rankTIps.png)
+- Deployment to Render.com (tried both integrated and seperated backend & frontend approach)
 
 ## Instructions to build
 
