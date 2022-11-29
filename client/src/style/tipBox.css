@@ -1,0 +1,46 @@
+.tipBox-wrapper {
+  width: 100%;
+  float: right;
+  padding-top: 1rem;
+  margin-left: 30rem;
+  margin-right: 3rem;
+  display: block;
+}
+
+textarea {
+  display: block;
+  align-items: center;
+  min-height: 100px;
+  min-width: 400px;
+  height: 4rem;
+  width: 40%;
+  padding-left: 0.3rem;
+  padding-right: 0.3rem;
+  padding-top: 0.2rem;
+}
+
+.tipBox-wrapper .saveBtn {
+  padding: 0.2rem;
+  float: right;
+}
+
+.tipBox-wrapper button {
+  align-items: right;
+}
+
+.labelBox {
+  padding-top: 5px;
+  width: 400px;
+  height: 30px;
+  display: block;
+  line-height: 20px;
+  display: table-cell;
+  align-items: center;
+}
+
+.labelBox label {
+  padding-top: 6px;
+  height: 30px;
+  float: left;
+  font-size: 20px;
+}

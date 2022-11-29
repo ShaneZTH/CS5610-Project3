@@ -1,0 +1,57 @@
+h4{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: rgb(12, 25, 69);
+    font-size: 7px;
+    margin-left: 1.6em;
+    margin-top: 2em;
+}
+
+.expense-form{
+    margin:40px auto;
+    display: flex;
+    flex-direction: column; 
+    /* position:absolute; */
+    align-items: center;
+    border: 3px solid rgb(197, 196, 219);
+    border-radius: 1em;
+    padding: 20px;
+    width:500px;
+    height: 360px;
+}
+.expense-form h3{
+    color: rgb(61, 61, 97);
+    margin-bottom: 40px;
+}
+
+.expense-form-label{
+    /* Uniform size & alignment */
+    display:inline-block;  
+    width: 80px;
+    margin: 30px auto;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+}
+
+/* .dropdown-label{
+    display:inline-block;  
+    width: 90px;
+    margin: 30px auto;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+} */
+.dropdown-select{
+    display: inline-block;
+    margin-left: 10px;
+    width: 180px;
+}
+.save-button{
+    width: 90px;
+    display: flex;
+    align-items: center;
+    margin: 20px auto;
+    padding-left: 20px;
+}
+
+.save-button:hover{
+    background-color: rgb(212, 212, 226,0.8);
+}
