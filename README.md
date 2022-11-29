@@ -10,7 +10,7 @@
 
 ### Web App URL:
 
-- Frontend: [Render.com](https://savewithustoday.onrender.com/account)
+- Frontend: [Render.com](https://savewithustoday.onrender.com/)
 
 ## Project Objective
 
