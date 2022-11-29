@@ -13,7 +13,6 @@ router.post("/", function (req, res) {
 });
 
 router.get("/", (req, res) => {
-  //console.log("my session",req.session.passport);
   var collection = "expense" + req.user.user;
   console.log("get from collection", collection);
   db.collection(collection)

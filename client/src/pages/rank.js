@@ -152,4 +152,4 @@ function Rank() {
   );
 }
 
-export default RankPage;
+export default Rank;
