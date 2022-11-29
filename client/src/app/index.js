@@ -10,10 +10,7 @@ import Footer from '../components/footer';
 import Dashboard from '../pages/dashboard';
 import Rank from '../pages/rank';
 import Budget from '../pages/budget';
-import background from "../images/bg-img.jpeg"
-import { Image } from 'primereact/image';
  
-
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 function App() {
@@ -23,10 +20,6 @@ function App() {
     console.log(window.localStorage.getItem('name'));
     setName(window.localStorage.getItem('name'));
   }, []); 
-
-/*   useEffect(() => {
-    window.localStorage.setItem('name', name);
-  }, [name]);  */
 
   const updateUser=(name)=>{
     setName(name);

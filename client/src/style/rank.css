@@ -1,26 +1,26 @@
-.rank-text{
-    margin-left: 1em;
-    color: rgb(12, 25, 69);
-    margin-top: 1.5em;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    margin-bottom: 1.5em;
+.rank-text {
+  margin-left: 1em;
+  color: rgb(12, 25, 69);
+  margin-top: 1.5em;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin-bottom: 1.5em;
 }
 
-.refresh-img{
-    width:40px;
-    height: 40px;
+.refresh-img {
+  width: 40px;
+  height: 40px;
 }
 
-.rank-div{
-    display: flex;
+.rank-div {
+  display: flex;
 }
 
-h4{
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    color: rgb(12, 25, 69);
-    margin-left: 60px;
+h4 {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: rgb(12, 25, 69);
+  margin-left: 60px;
 }
 
-.alert-window{
-    margin: 20px 40px;
+.alert-window {
+  margin: 20px 40px;
 }

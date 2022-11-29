@@ -12,6 +12,7 @@ const proxy = require("express-http-proxy");
 /*  PASSPORT SETUP  */
 
 const passport = require("passport");
+require("dotenv").config();
 
 const PORT = process.env.PORT || 8080;
 
@@ -20,17 +21,14 @@ var corsOptions = {
   methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD", "DELETE"],
   credentials: true,
 };
-//if (process.env.NODE_ENV === 'production') {
-  //*Set static folder up in production
+
+//*Set static folder up in production
 app.use(express.static(path.join(__dirname, "../client/build")));
 
-  //app.get('*', (req,res) => res.sendFile(path.resolve(__dirname, 'client', 'build','index.html')));
-//}
 app.use(express.static(path.join(__dirname, "public")));
 app.use(cors(corsOptions));
 app.use(cookieParser());
 app.use(bodyParser.json());
-// app.use(express.urlencoded({ extended: false }));
 
 app.use(
   session({
@@ -39,14 +37,6 @@ app.use(
     secret: "No secrete",
     saveUninitialized: false,
     proxy: true,
-    /*     cookie: {
-      expires: new Date(253402300000000),
-      //maxAge: 60000
-      httpOnly:false,
-      secure: true,
-      sameSite:'none'
-    },  */
-    //store:memoryStore,
     resave: false,
   })
 );
@@ -60,7 +50,6 @@ app.use(express.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 
 app.use(express.urlencoded({ extended: true })); // TODO: do we need true / false here?
-require("dotenv").config();
 
 // Set Favicon
 app.get("/favicon.ico", (req, res) => {
@@ -78,10 +67,6 @@ app.get("/", (req, res) => {
 // Routing
 ////////////////////////////////////
 
-let spendingRouter = require("./routes/spending-router");
-
-app.use("/api/spending", spendingRouter);
-
 app.listen(process.env.PORT || PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
@@ -96,10 +81,6 @@ app.use((req, res, next) => {
   next();
 });
 
-//app.use(proxy('http://127.0.0.1:3000'));
-
-//require("./passport/auth")(passport);
-
 let mongoUtil = require("./db/mongoUtil.js");
 mongoUtil.connectToServer(() => {
   const passportConfig = require("./passport/auth")(passport);
@@ -108,13 +89,14 @@ mongoUtil.connectToServer(() => {
   let budgetRouter = require("./routes/budget.js");
   let rankRouter = require("./routes/rank.js");
   let rankstatusRouter = require("./routes/rankstatus.js");
-
-  //app.use("/",authRouter);
+  let tipRouter = require("./routes/tipRoutes");
 
   app.use("/expense", expenseRouter);
   app.use("/budget", budgetRouter);
   app.use("/rank", rankRouter);
   app.use("/rankstatus", rankstatusRouter);
+  app.use("/api/tip", tipRouter);
+
   // Routes
   app.post("/login", (req, res, next) => {
     passport.authenticate("local", (err, user, info) => {

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import refresh_img from "../images/refresh.jpeg";
 import "../style/rank.css";
 import Alert from "react-bootstrap/Alert";
+import TipBox from "../components/tipBox";
 function Rank() {
   const [userList, setuserList] = useState([]);
   //const [rank, setRank] = useState(0);
@@ -82,7 +83,7 @@ function Rank() {
         return response.text();
       })
       .then((data) => {
-        console.log("data looks like this:", data);
+        // console.log("data looks like this:", data);
         var data_arr = JSON.parse(data);
         const percent = parseInt(data_arr[0]["data"]["myrank"]);
         console.log("old rank obtained", percent);
@@ -111,7 +112,6 @@ function Rank() {
   };
 
   useEffect(() => {
-    console.log(window.localStorage.getItem("name"));
     setUsername(window.localStorage.getItem("name"));
     getOldRank();
   }, []);
@@ -123,6 +123,7 @@ function Rank() {
         <button className="refresh-button" onClick={handleRefresh}>
           <img src={refresh_img} alt="" className="refresh-img" />
         </button>
+        <TipBox className="rank-tip"></TipBox>
       </div>
       <h4>You have defeated {percentile}% users</h4>
       {isbetter && showbetter && (
