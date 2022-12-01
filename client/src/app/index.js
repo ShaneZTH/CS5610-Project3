@@ -9,7 +9,7 @@ import Rank from "../pages/rank";
 import Budget from "../pages/budget";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-
+//Clear code organization! Each page and component is in its own file.  
 function App() {
   var [name, setName] = useState("");
 
