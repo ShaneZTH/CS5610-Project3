@@ -57,7 +57,7 @@ app.get("/", (req, res) => {
 ////////////////////////////////////
 // Routing
 ////////////////////////////////////
-app.listen(process.env.PORT || PORT, () => {
+app.listen(process.env.PORT || PORT, "0.0.0.0", () => {
   console.log(`Server is running on port ${PORT}.`);
 });
 
