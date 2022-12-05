@@ -12,6 +12,10 @@
 
 - Frontend: [Render.com](https://savewithustoday.onrender.com/)
 
+### Design Doc Link:
+
+- [Design Doc](https://docs.google.com/document/d/1XUuSi9c5Sal9Rxedo3zFdvfOoCsSGGy5Y-GhISV-ebw/edit?usp=sharing)
+
 ## Project Objective
 
 We want to create a web application that helps users keep track of their spending and saving on a daily basis. This app aims to let users put down their budgets, display current spending status based on budgets and send out alerts when users are spending too much.
@@ -33,6 +37,12 @@ We want to create a web application that helps users keep track of their spendin
   ![status table](client/src/images/status-table.png)
 - Warnings when budget is exceeded
   ![warning](client/src/images/warnings.png)
+
+### Final Progress Since Nov 22d
+
+- Rank & Tips page shows a saving tip and current rank among all users
+![rank page](client/src/images/rankTIps.png)
+- Deployment to Render.com (tried both integrated and seperated backend & frontend approach)
 
 ## Instructions to build
 

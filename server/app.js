@@ -131,4 +131,10 @@ mongoUtil.connectToServer(() => {
   });
 });
 
+let minutes = 4;
+let myInterval = minutes * 60 * 1000;
+setInterval(function () {
+  console.log(new Date() + " - Logging active status");
+}, myInterval);
+
 module.exports = app;
