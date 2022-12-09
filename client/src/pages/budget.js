@@ -9,7 +9,7 @@ function Budget() {
   }, []);
   return (
     <div className="budget-page">
-      <h2 className="greeting">Hi {username}, lets start saving today!</h2>
+      <h1 className="greeting">Hi {username}, lets start saving today!</h1>
       <ExpenseForm curr_user={username} />
       <BudgetForm />
     </div>

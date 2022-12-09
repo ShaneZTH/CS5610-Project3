@@ -34,6 +34,7 @@ function App() {
           <Route path="/rank" element={<Rank />} />
         </Routes>
       </Router>
+      <h1></h1>
 
       <Footer />
     </div>
