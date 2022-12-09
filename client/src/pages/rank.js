@@ -119,7 +119,7 @@ function Rank() {
   return (
     <div>
       <div className="rank-div">
-        <h2 className="rank-text">Click to See Current Rank</h2>
+        <h2 className="rank-text">Click to See Rank</h2>
         <button className="refresh-button" onClick={handleRefresh}>
           <img src={refresh_img} alt="" className="refresh-img" />
         </button>
