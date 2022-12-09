@@ -16,9 +16,9 @@ function StatusTable({ updateBudget, updateSpend }) {
     fetch(getURL, {
       credentials: "include",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      method: "GET"
+      method: "GET",
     })
       .then((res) => {
         return res.text();
@@ -50,9 +50,9 @@ function StatusTable({ updateBudget, updateSpend }) {
     fetch(getURL, {
       credentials: "include",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      method: "GET"
+      method: "GET",
     })
       .then((res) => {
         return res.text();
@@ -78,12 +78,12 @@ function StatusTable({ updateBudget, updateSpend }) {
       credentials: "include",
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         username: window.localStorage.getItem("name"),
-        overall: totalSpending / totalBudget
-      })
+        overall: totalSpending / totalBudget,
+      }),
     })
       .then((res) => {
         return res.text();
@@ -106,8 +106,7 @@ function StatusTable({ updateBudget, updateSpend }) {
       <h4>
         Overall Spending:{" "}
         <b>
-          {Math.floor((100 * totalSpending) / totalBudget) >= 0 &&
-          Math.floor((100 * totalSpending) / totalBudget) <= 100
+          {Math.floor((100 * totalSpending) / totalBudget) >= 0 
             ? Math.floor((100 * totalSpending) / totalBudget) + "%"
             : ""}
         </b>
@@ -136,8 +135,11 @@ function StatusTable({ updateBudget, updateSpend }) {
                 {" "}
                 <ProgressBar
                   bgcolor="orange"
-                  progress={Math.floor(
-                    (100 * cateMap.get("dining")) / budgetMap.get("dining")
+                  progress={Math.min(
+                    100,
+                    Math.floor(
+                      (100 * cateMap.get("dining")) / budgetMap.get("dining")
+                    )
                   )}
                   height={20}
                 />
@@ -156,8 +158,11 @@ function StatusTable({ updateBudget, updateSpend }) {
               <td>
                 <ProgressBar
                   bgcolor="orange"
-                  progress={Math.floor(
-                    (100 * cateMap.get("grocery")) / budgetMap.get("grocery")
+                  progress={Math.min(
+                    100,
+                    Math.floor(
+                      (100 * cateMap.get("grocery")) / budgetMap.get("grocery")
+                    )
                   )}
                   height={20}
                 />
@@ -177,9 +182,12 @@ function StatusTable({ updateBudget, updateSpend }) {
               <td>
                 <ProgressBar
                   bgcolor="orange"
-                  progress={Math.floor(
-                    (100 * cateMap.get("entertainment")) /
-                      budgetMap.get("entertainment")
+                  progress={Math.min(
+                    100,
+                    Math.floor(
+                      (100 * cateMap.get("entertainment")) /
+                        budgetMap.get("entertainment")
+                    )
                   )}
                   height={20}
                 />
@@ -198,8 +206,11 @@ function StatusTable({ updateBudget, updateSpend }) {
               <td>
                 <ProgressBar
                   bgcolor="orange"
-                  progress={Math.floor(
-                    (100 * cateMap.get("clothes")) / budgetMap.get("clothes")
+                  progress={Math.min(
+                    100,
+                    Math.floor(
+                      (100 * cateMap.get("clothes")) / budgetMap.get("clothes")
+                    )
                   )}
                   height={20}
                 />
@@ -216,9 +227,12 @@ function StatusTable({ updateBudget, updateSpend }) {
               <td>
                 <ProgressBar
                   bgcolor="orange"
-                  progress={
-                    (100 * cateMap.get("travel")) / budgetMap.get("travel")
-                  }
+                  progress={Math.min(
+                    100,
+                    Math.floor(
+                      (100 * cateMap.get("travel")) / budgetMap.get("travel")
+                    )
+                  )}
                   height={20}
                 />
               </td>
@@ -234,8 +248,12 @@ function StatusTable({ updateBudget, updateSpend }) {
               <td>
                 <ProgressBar
                   bgcolor="orange"
-                  progress={Math.floor(
-                    (100 * cateMap.get("medicene")) / budgetMap.get("medicene")
+                  progress={Math.min(
+                    100,
+                    Math.floor(
+                      (100 * cateMap.get("medicene")) /
+                        budgetMap.get("medicene")
+                    )
                   )}
                   height={20}
                 />
@@ -253,9 +271,12 @@ function StatusTable({ updateBudget, updateSpend }) {
                 {" "}
                 <ProgressBar
                   bgcolor="orange"
-                  progress={
-                    (100 * cateMap.get("others")) / budgetMap.get("others")
-                  }
+                  progress={Math.min(
+                    100,
+                    Math.floor(
+                      (100 * cateMap.get("others")) / budgetMap.get("others")
+                    )
+                  )}
                   height={20}
                 />
               </td>
@@ -269,6 +290,6 @@ function StatusTable({ updateBudget, updateSpend }) {
 
 StatusTable.propTypes = {
   updateBudget: PropTypes.func,
-  updateSpend: PropTypes.func
+  updateSpend: PropTypes.func,
 };
 export default StatusTable;
