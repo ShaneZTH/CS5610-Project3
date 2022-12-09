@@ -83,7 +83,7 @@ function Dashboard() {
           <img src={refresh_img} alt="" className="refresh-img" />
         </button> */}
         <button className="reset-button" onClick={handleReset}>
-          <img src={reset_img} alt="" className="reset-img" />
+          <img src={reset_img} alt="" className="reset-img" aria-label="Close"/>
         </button>
       </div>
       <StatusTable

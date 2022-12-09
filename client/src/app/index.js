@@ -24,7 +24,7 @@ function App() {
   };
   // console.log(name);
   return (
-    <div>
+    <div role="main">
       <Router>
         <NavBar />
         <Routes>
