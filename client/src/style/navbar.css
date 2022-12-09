@@ -24,15 +24,27 @@
   /* background-color: rgb(185, 143, 206); */
 }
 
-li {
+ul{
   list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+li{
+  float: left;
+  margin-left: 20px;
 }
 
 .menu {
   text-decoration: none;
   color: ivory;
-  margin: 20px;
-  font-size: 20px;
+  margin: 30px;
+  font-size:23px;
+}
+
+.menu-li{
+  margin-top: 8px;
+  margin-left: 40px;
 }
 
 .menu:hover {

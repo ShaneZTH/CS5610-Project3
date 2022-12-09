@@ -120,8 +120,8 @@ function Rank() {
     <div>
       <div className="rank-div">
         <h2 className="rank-text">Click to See Rank</h2>
-        <button className="refresh-button" onClick={handleRefresh}>
-          <img src={refresh_img} alt="" className="refresh-img" />
+        <button className="refresh-button" onClick={handleRefresh} >
+          <img src={refresh_img} alt="" className="refresh-img" aria-label="Close"/>
         </button>
         <TipBox className="rank-tip"></TipBox>
       </div>

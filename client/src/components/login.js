@@ -50,11 +50,11 @@ function Login({ updateUser }) {
           <ul>
             <li>
               <label className="form-label">Username: </label>
-              <input type="text" required onChange={nameUpdate} />
+              <input type="text" required onChange={nameUpdate} aria-label="Close"/>
             </li>
             <li>
               <label className="form-label">Password: </label>
-              <input type="password" required onChange={passwordUpdate} />
+              <input type="password" required onChange={passwordUpdate} aria-label="Close"/>
             </li>
           </ul>
           <button type="submit" className="login-button">

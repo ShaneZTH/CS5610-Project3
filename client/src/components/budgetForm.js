@@ -43,7 +43,7 @@ function BudgetForm() {
     <div>
       <div className="expense-form">
         <h3>Record your monthly budget</h3>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} aria-label="Close">
           <ul>
             <li>
               <label className="dropdown-label">
@@ -54,6 +54,7 @@ function BudgetForm() {
                   onChange={updateCategory}
                   required
                   className="dropdown-select"
+                  aria-label="Close"
                 >
                   <option value="none">None</option>
                   <option value="dining">Dining</option>
@@ -68,7 +69,7 @@ function BudgetForm() {
             </li>
             <li>
               <label className="expense-form-label">Amount:</label>
-              <input type="text" required onChange={updateAmount}></input>
+              <input type="text" required onChange={updateAmount} aria-label="Close"></input>
             </li>
           </ul>
           <button type="submit" className="save-button">

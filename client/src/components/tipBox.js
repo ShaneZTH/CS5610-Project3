@@ -10,7 +10,7 @@ function TipBox() {
     let uri = tipURI;
     const res = await fetch(uri, {
       method: "GET",
-      credentials: "include"
+      credentials: "include",
     });
 
     let data = await res.json();
@@ -33,16 +33,16 @@ function TipBox() {
     const username = window.localStorage.getItem("name");
     const reqBody = JSON.stringify({
       user: username,
-      tip: tip
+      tip: tip,
     });
 
     fetch(uri, {
       body: reqBody,
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      credentials: "include"
+      credentials: "include",
     })
       .then((res) => {
         return res.text();
@@ -64,14 +64,17 @@ function TipBox() {
         </div>
       </div>
       <div className="rounded-lg">
-        <textarea
-          className="outline-0 mt-2 mb-2"
-          id="tip-text"
-          value={tip}
-          onChange={handleChange}
-        >
-          placeholder
-        </textarea>
+        <label>
+          <textarea
+            className="outline-0 mt-2 mb-2"
+            id="tip-text"
+            value={tip}
+            onChange={handleChange}
+            aria-label="Close"
+          >
+            placeholder
+          </textarea>
+        </label>
       </div>
     </div>
   );
