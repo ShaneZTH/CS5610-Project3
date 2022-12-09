@@ -17,7 +17,7 @@ function ExpenseForm(props) {
     if (props.curr_user === "") {
       alert("Log in first");
     }
-    const postURL = "/expense";
+    const postURL = "http://localhost:8080/expense";
     fetch(postURL, {
       credentials: "include",
       method: "POST",
@@ -36,7 +36,7 @@ function ExpenseForm(props) {
           return new Error(res.statusText);
         }
         const string = res.text();
-        navigate("/account");
+        //navigate("/account");
         //window.location.reload();
         return string;
       })

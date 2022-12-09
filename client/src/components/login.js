@@ -18,7 +18,7 @@ function Login({ updateUser }) {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const postURL = "/login";
+    const postURL = "http://localhost:8080/login";
     //navigate("/budget");
     fetch(postURL, {
       credentials: "include",

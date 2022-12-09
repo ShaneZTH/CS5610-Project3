@@ -14,7 +14,7 @@ function BudgetForm() {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const postURL = "/budget";
+    const postURL = "http://localhost:8080/budget";
     fetch(postURL, {
       credentials: "include",
       method: "POST",
@@ -33,7 +33,7 @@ function BudgetForm() {
           return new Error(res.statusText);
         }
         const string = res.text();
-        navigate("/account");
+        //navigate("/account");
         //window.location.reload();
         return string;
       })
