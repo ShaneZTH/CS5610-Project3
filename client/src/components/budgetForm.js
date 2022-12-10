@@ -14,7 +14,7 @@ function BudgetForm() {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const postURL = "http://localhost:8080/budget";
+    const postURL = "/budget";
     fetch(postURL, {
       credentials: "include",
       method: "POST",

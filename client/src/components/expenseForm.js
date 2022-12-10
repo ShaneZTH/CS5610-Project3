@@ -17,7 +17,7 @@ function ExpenseForm(props) {
     if (props.curr_user === "") {
       alert("Log in first");
     }
-    const postURL = "http://localhost:8080/expense";
+    const postURL = "/expense";
     fetch(postURL, {
       credentials: "include",
       method: "POST",

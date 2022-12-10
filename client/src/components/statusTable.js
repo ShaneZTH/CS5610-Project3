@@ -12,7 +12,7 @@ function StatusTable({ updateBudget, updateSpend }) {
   const [username, setUsername] = useState("");
 
   const getCategories = () => {
-    const getURL = "http://localhost:8080/expense";
+    const getURL = "/expense";
     fetch(getURL, {
       credentials: "include",
       headers: {
@@ -46,7 +46,7 @@ function StatusTable({ updateBudget, updateSpend }) {
   };
 
   const getBudgetMap = () => {
-    const getURL = "http://localhost:8080/budget";
+    const getURL = "/budget";
     fetch(getURL, {
       credentials: "include",
       headers: {
@@ -73,7 +73,7 @@ function StatusTable({ updateBudget, updateSpend }) {
   };
 
   const postOverall = () => {
-    const postURL = "http://localhost:8080/rank";
+    const postURL = "/rank";
     fetch(postURL, {
       credentials: "include",
       method: "POST",
