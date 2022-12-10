@@ -43,7 +43,7 @@ function BudgetForm() {
     <div>
       <div className="expense-form">
         <h3>Record your monthly budget</h3>
-        <form onSubmit={handleSubmit} aria-label="Close">
+        <form onSubmit={handleSubmit} aria-label="Close" className="expense-form-content">
           <ul>
             <li>
               <label className="dropdown-label">
@@ -77,16 +77,14 @@ function BudgetForm() {
               ></input>
             </li>
           </ul>
+          <button type="submit" className="save-button">
+            Save
+          </button>
         </form>
-        <button type="submit" className="save-button">
-          Save
-        </button>
       </div>
     </div>
   );
 }
 
-BudgetForm.propTypes={
-
-};
+BudgetForm.propTypes = {};
 export default BudgetForm;

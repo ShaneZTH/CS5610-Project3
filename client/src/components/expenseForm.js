@@ -46,7 +46,7 @@ function ExpenseForm(props) {
     <div>
       <div className="expense-form">
         <h3>Record your latest expenses</h3>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="expense-form-content">
           <ul>
             <li>
               <label className="dropdown-label">
@@ -74,10 +74,10 @@ function ExpenseForm(props) {
               <input type="text" required onChange={updateAmount}></input>
             </li>
           </ul>
+          <button type="submit" className="save-button">
+            Save
+          </button>
         </form>
-        <button type="submit" className="save-button">
-          Save
-        </button>
       </div>
     </div>
   );
