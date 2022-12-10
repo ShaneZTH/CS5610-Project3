@@ -46,7 +46,7 @@ function Login({ updateUser }) {
     <div>
       <div className="login-wrapper">
         <h2>Log In to See Your Customized Plan</h2>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="login-form-content">
           <ul>
             <li>
               <label className="form-label">Username: </label>
@@ -67,10 +67,10 @@ function Login({ updateUser }) {
               />
             </li>
           </ul>
+          <button type="submit" className="login-button">
+            Log In
+          </button>
         </form>
-        <button type="submit" className="login-button">
-          Log In
-        </button>
         <h3>
           An account will be automatically registered for new user, which may
           take ~2 seconds
