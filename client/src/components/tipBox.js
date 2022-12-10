@@ -53,7 +53,7 @@ function TipBox() {
   return (
     <div className="tipBox-wrapper">
       <div className="labelBox">
-        <label>Set a Personal Saving Tip</label>
+        <label className="tip-label">Set a Personal Saving Tip</label>
         <div className="bg-grey-light rounded-b-lg saveBtn">
           <button
             className="border border-grey px-2 py-1 rounded hover:bg-grey outline-0 text-grey-darkest mr-1"

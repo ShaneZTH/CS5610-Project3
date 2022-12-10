@@ -25,7 +25,7 @@ function App() {
   // console.log(name);
   return (
     <div role="main">
-      <Router>
+      <Router classname="router">
         <NavBar />
         <Routes>
           <Route path="/" element={<Login updateUser={updateUser} />} />
@@ -34,7 +34,7 @@ function App() {
           <Route path="/rank" element={<Rank />} />
         </Routes>
       </Router>
-      <h1></h1>
+      {/* <h1>Welcome to Spending Tracker!</h1> */}
 
       <Footer />
     </div>

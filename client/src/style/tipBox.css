@@ -6,7 +6,10 @@
   margin-right: 3rem;
   display: block;
 }
-
+.tip-label{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: rgb(12, 25, 69);
+}
 textarea {
   display: block;
   align-items: center;
