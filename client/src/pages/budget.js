@@ -15,5 +15,5 @@ function Budget() {
     </div>
   );
 }
-
+Budget.propTypes={};
 export default Budget;

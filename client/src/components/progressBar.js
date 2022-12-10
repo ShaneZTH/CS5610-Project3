@@ -31,5 +31,5 @@ const ProgressBar = ({ bgcolor, progress, height }) => {
     </div>
   );
 };
-
+ProgressBar.propTypes={};
 export default ProgressBar;

@@ -79,5 +79,5 @@ function TipBox() {
     </div>
   );
 }
-
+TipBox.propTypes={};
 export default TipBox;

@@ -151,5 +151,5 @@ function Rank() {
     </div>
   );
 }
-
+Rank.propTypes={};
 export default Rank;

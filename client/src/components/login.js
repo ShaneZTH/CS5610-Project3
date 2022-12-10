@@ -24,12 +24,12 @@ function Login({ updateUser }) {
       credentials: "include",
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         username: name,
-        password: password
-      })
+        password: password,
+      }),
     })
       .then((response) => {
         if (!response.ok) {
@@ -50,17 +50,27 @@ function Login({ updateUser }) {
           <ul>
             <li>
               <label className="form-label">Username: </label>
-              <input type="text" required onChange={nameUpdate} aria-label="Close"/>
+              <input
+                type="text"
+                required
+                onChange={nameUpdate}
+                aria-label="Close"
+              />
             </li>
             <li>
               <label className="form-label">Password: </label>
-              <input type="password" required onChange={passwordUpdate} aria-label="Close"/>
+              <input
+                type="password"
+                required
+                onChange={passwordUpdate}
+                aria-label="Close"
+              />
             </li>
           </ul>
-          <button type="submit" className="login-button">
-            Log In
-          </button>
         </form>
+        <button type="submit" className="login-button">
+          Log In
+        </button>
         <h3>
           An account will be automatically registered for new user, which may
           take ~2 seconds
@@ -74,7 +84,7 @@ function Login({ updateUser }) {
 }
 
 Login.propTypes = {
-  updateUser: PropTypes.func
+  updateUser: PropTypes.func,
 };
 
 export default Login;

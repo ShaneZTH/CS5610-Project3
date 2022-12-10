@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../style/expense.css";
-
+import PropTypes from "prop-types";
 function BudgetForm() {
   const navigate = useNavigate();
   var [Category, setCategory] = useState();
@@ -19,12 +19,12 @@ function BudgetForm() {
       credentials: "include",
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         category: Category,
-        amount: amount
-      })
+        amount: amount,
+      }),
     })
       .then((res) => {
         if (!res.ok) {
@@ -69,15 +69,24 @@ function BudgetForm() {
             </li>
             <li>
               <label className="expense-form-label">Amount:</label>
-              <input type="text" required onChange={updateAmount} aria-label="Close"></input>
+              <input
+                type="text"
+                required
+                onChange={updateAmount}
+                aria-label="Close"
+              ></input>
             </li>
           </ul>
-          <button type="submit" className="save-button">
-            Save
-          </button>
         </form>
+        <button type="submit" className="save-button">
+          Save
+        </button>
       </div>
     </div>
   );
 }
+
+BudgetForm.propTypes={
+
+};
 export default BudgetForm;

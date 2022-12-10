@@ -29,4 +29,5 @@ function NavBar() {
     </div>
   );
 }
+NavBar.propTypes={};
 export default NavBar;
