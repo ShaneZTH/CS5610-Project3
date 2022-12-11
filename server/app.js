@@ -25,6 +25,10 @@ var corsOptions = {
 app.use(express.static(path.join(__dirname, "../client/build")));
 
 app.use(express.static(path.join(__dirname, "public")));
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "../client/build/index.html"));
+});
+
 app.use(cors(corsOptions));
 app.use(cookieParser());
 app.use(bodyParser.json());
@@ -50,9 +54,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // simple route
-app.get("/", (req, res) => {
+/* app.get("/", (req, res) => {
   res.json({ message: "hello world" });
-});
+}); */
 
 ////////////////////////////////////
 // Routing
