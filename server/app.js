@@ -25,9 +25,9 @@ var corsOptions = {
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../client/build")));
   app.use(express.static(path.join(__dirname, "public")));
-  app.get("*", (req, res) => {
+/*   app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "../client/build/index.html"));
-  });
+  });  */
 }
 app.use(cors(corsOptions));
 app.use(cookieParser());
@@ -123,7 +123,7 @@ mongoUtil.connectToServer(() => {
 
   // Forward 404 to error handler
   app.use(function (req, res, next) {
-    next(createError(404));
+    res.sendFile(path.join(__dirname, "../client/build/index.html"));
   });
 
   // Error handler

@@ -28,10 +28,10 @@ function App() {
       <Router classname="router">
         <NavBar />
         <Routes>
-          <Route path="/" element={<Login updateUser={updateUser} />} />
-          <Route path="/myaccount" element={<Dashboard username={name} />} />
-          <Route path="/mybudget" element={<Budget />} />
-          <Route path="/myuserrank" element={<Rank />} />
+          <Route exact path="/" element={<Login updateUser={updateUser} />} />
+          <Route exact path="/myaccount" element={<Dashboard username={name} />} />
+          <Route exact path="/mybudget" element={<Budget />} />
+          <Route exact path="/myuserrank" element={<Rank />} />
         </Routes>
       </Router>
       {/* <h1>Welcome to Spending Tracker!</h1> */}
