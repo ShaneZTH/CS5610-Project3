@@ -37,7 +37,7 @@ function Login({ updateUser }) {
           navigate("/");
           throw new Error(response.statusText);
         }
-        navigate("/budget");
+        navigate("/mybudget");
         return response.text();
       })
       .catch((err) => console.log(err));

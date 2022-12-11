@@ -29,9 +29,9 @@ function App() {
         <NavBar />
         <Routes>
           <Route path="/" element={<Login updateUser={updateUser} />} />
-          <Route path="/account" element={<Dashboard username={name} />} />
-          <Route path="/budget" element={<Budget />} />
-          <Route path="/rank" element={<Rank />} />
+          <Route path="/myaccount" element={<Dashboard username={name} />} />
+          <Route path="/mybudget" element={<Budget />} />
+          <Route path="/myuserrank" element={<Rank />} />
         </Routes>
       </Router>
       {/* <h1>Welcome to Spending Tracker!</h1> */}

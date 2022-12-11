@@ -11,17 +11,17 @@ function NavBar() {
           </Link>
         </li>
         <li className="menu-li">
-          <Link to="/budget" className="menu">
+          <Link to="/mybudget" className="menu">
             Budget & Expenses
           </Link>
         </li>
         <li className="menu-li">
-          <Link to="/rank" className="menu">
+          <Link to="/myuserrank" className="menu">
             Ranking & Tips
           </Link>
         </li>
         <li className="menu-li">
-          <Link to="/account" className="menu">
+          <Link to="/myaccount" className="menu">
             My Dashboard
           </Link>
         </li>
