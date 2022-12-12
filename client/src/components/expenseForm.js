@@ -4,14 +4,17 @@ import PropTypes from "prop-types";
 import "../style/expense.css";
 function ExpenseForm(props) {
   const navigate = useNavigate();
-  var [Category, setCategory] = useState();
-  var [amount, setAmount] = useState();
+  let [Category, setCategory] = useState();
+  let [amount, setAmount] = useState();
+
   const updateCategory = (e) => {
     setCategory(e.target.value);
   };
+
   const updateAmount = (e) => {
     setAmount(e.target.value);
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (props.curr_user === "") {
@@ -36,6 +39,7 @@ function ExpenseForm(props) {
           return new Error(res.statusText);
         }
         const string = res.text();
+        alert("Expense has been recorded.");
         //navigate("/account");
         //window.location.reload();
         return string;
