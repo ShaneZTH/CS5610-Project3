@@ -54,6 +54,7 @@ app.use(express.urlencoded({ extended: true }));
 // Routing
 ////////////////////////////////////
 app.listen(process.env.PORT || PORT, "0.0.0.0", () => {
+  console.log("MongoDB URI: " + (process.env.MONGODB_URI || "null"));
   console.log(`Server is running on port ${PORT}.`);
 });
 
@@ -69,6 +70,8 @@ app.use((req, res, next) => {
 
 let mongoUtil = require("./db/mongoUtil.js");
 mongoUtil.connectToServer(() => {
+  console.log("MongoDB URI(connect): " + (process.env.MONGODB_URI || "null"));
+
   const passportConfig = require("./passport/auth")(passport);
   let authRouter = require("./passport/auth.js");
   let expenseRouter = require("./routes/expense.js");
@@ -89,9 +92,13 @@ mongoUtil.connectToServer(() => {
       if (err) throw err;
       if (!user) {
         res.status(500).send();
+        // return res.redirect("/login");
       } else {
         req.logIn(user, (err) => {
           if (err) throw err;
+          console.log("User login success ");
+          console.log(user);
+
           res.send("Successfully Authenticated");
         });
       }
@@ -116,7 +123,7 @@ mongoUtil.connectToServer(() => {
   });
 
   app.get("/logout", (req, res, next) => {
-    console.log("log out user", req.session);
+    console.log("User logged out: ", req.session);
     req.session.destroy((err) => {
       if (err) {
         return next(err);
@@ -139,7 +146,7 @@ mongoUtil.connectToServer(() => {
   });
 });
 
-let minutes = 4;
+let minutes = 5;
 let myInterval = minutes * 60 * 1000;
 setInterval(function () {
   console.log(new Date() + " - Logging active status");
