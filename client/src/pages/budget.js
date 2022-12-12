@@ -14,24 +14,23 @@ function Budget() {
       headers: {
         "Content-Type": "application/json"
       }
-    }).then((resp) => {
-      return resp.json();
     })
       .then((resp) => {
-        console.log(resp);
+        return resp.json();
+      })
+      .then((resp) => {
         if (resp.success) {
-          console.log("Auth user: " + resp.user);
           setAuth(true);
           setUsername(resp.user);
-        } else { // Reject access
-          console.error("User not authenticated.");
+        } else {
+          // Reject access
+          console.warn("User not authenticated.");
           alert("You haven't logged in yet.");
           navigate("/");
           return;
         }
       });
   }, []);
-  
 
   return (
     <div className="budget-page">
@@ -41,5 +40,5 @@ function Budget() {
     </div>
   );
 }
-Budget.propTypes={};
+Budget.propTypes = {};
 export default Budget;

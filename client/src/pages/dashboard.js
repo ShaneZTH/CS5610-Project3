@@ -26,16 +26,16 @@ function Dashboard() {
       headers: {
         "Content-Type": "application/json"
       }
-    }).then((resp) => {
-      return resp.json();
     })
       .then((resp) => {
-        console.log(resp);
+        return resp.json();
+      })
+      .then((resp) => {
         if (resp.success) {
-          console.log("Auth user: " + resp.user);
           setAuth(true);
-        } else { // Reject access
-          console.error("User not authenticated.");
+        } else {
+          // Reject access
+          console.warn("User not authenticated.");
           alert("You haven't logged in yet.");
           navigate("/");
           return;
@@ -65,9 +65,8 @@ function Dashboard() {
         alert("Successfully reset current status");
       })
       .catch((err) => {
-        console.log(err);
+        console.warn(err);
       });
-    //window.location.reload();
   };
 
   const handleLogout = async (e) => {
@@ -89,10 +88,10 @@ function Dashboard() {
         return response.text();
       })
       .catch((err) => {
-        console.error(err);
+        console.warn(err);
       });
   };
-  
+
   return (
     <div className="dashboard-page container">
       {/*             <h2 className='greeting'>Hi {username}, let's start saving today!</h2>
@@ -103,7 +102,12 @@ function Dashboard() {
           <img src={refresh_img} alt="" className="refresh-img" />
         </button> */}
         <button className="reset-button" onClick={handleReset}>
-          <img src={reset_img} alt="" className="reset-img" aria-label="Close"/>
+          <img
+            src={reset_img}
+            alt=""
+            className="reset-img"
+            aria-label="Close"
+          />
         </button>
       </div>
       <StatusTable
@@ -239,5 +243,5 @@ function Dashboard() {
     </div>
   );
 }
-Dashboard.propTypes={};
+Dashboard.propTypes = {};
 export default Dashboard;

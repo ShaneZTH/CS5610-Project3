@@ -24,31 +24,30 @@ function Rank() {
       headers: {
         "Content-Type": "application/json"
       }
-    }).then((resp) => {
-      return resp.json();
     })
       .then((resp) => {
-        console.log(resp);
+        return resp.json();
+      })
+      .then((resp) => {
         if (resp.success) {
-          console.log("Auth user: " + resp.user);
           setAuth(true);
           setUsername(resp.user);
-        } else { // Reject access
-          console.error("User not authenticated.");
+        } else {
+          // Reject access
+          console.warn("User not authenticated.");
           alert("You haven't logged in yet.");
           navigate("/");
           return;
         }
       });
-      
+
     setUsername(window.localStorage.getItem("name"));
     getOldRank();
   }, []);
 
   const handleRefresh = () => {
     getAllUsers();
-    // console.log("user list is", userList);
-    for (var i = 0; i < userList.length; i++) {
+    for (let i = 0; i < userList.length; i++) {
       if (userList[i] === currspend) {
         const curr_percent = (100 * (1 - (i + 1) / userList.length)).toFixed(2);
         if (!isNaN(curr_percent) && curr_percent < 100) {
@@ -57,9 +56,6 @@ function Rank() {
         }
       }
     }
-    //getOldRank();
-    // console.log("old rank is: ", oldrank);
-    // console.log("curr percentile is", parseInt(percentile));
     if (parseInt(percentile) > oldrank) {
       setisbetter(true);
     }
@@ -79,22 +75,19 @@ function Rank() {
         return response.text();
       })
       .then((data) => {
-        var data_arr = JSON.parse(data);
-        var userArr = new Array();
-        for (var i = 0; i < data_arr.length; i++) {
+        let data_arr = JSON.parse(data);
+        let userArr = new Array();
+        for (let i = 0; i < data_arr.length; i++) {
           const name = data_arr[i]["username"];
           const amount = parseInt(100 * data_arr[i]["overall"]);
-          //const percentage = amount * 100;
           if (name === username) {
             setCurrspend(amount);
-            // console.log("percentage is", amount);
           }
           userArr.push(amount);
         }
         userArr.sort(function (a, b) {
           return a - b;
         });
-        //console.log("sorted arr", userArr);
         setuserList(userArr);
       });
   };
@@ -109,22 +102,18 @@ function Rank() {
       }
     })
       .then((response) => {
-        //console.log("res is", res);
         return response.text();
       })
       .then((data) => {
-        // console.log("data looks like this:", data);
-        var data_arr = JSON.parse(data);
+        let data_arr = JSON.parse(data);
         const percent = parseInt(data_arr[0]["data"]["myrank"]);
-        // console.log("old rank obtained", percent);
         setOldrank(percent);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.warn(err));
   };
 
   const postRank = () => {
     const postURL = "/rankstatus";
-    // console.log("post percentage is:", percentile);
     fetch(postURL, {
       credentials: "include",
       method: "POST",
@@ -138,15 +127,20 @@ function Rank() {
       .then((res) => {
         return res.text();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.warn(err));
   };
 
   return (
     <div>
       <div className="rank-div">
         <h2 className="rank-text">Click to See Rank</h2>
-        <button className="refresh-button" onClick={handleRefresh} >
-          <img src={refresh_img} alt="" className="refresh-img" aria-label="Close"/>
+        <button className="refresh-button" onClick={handleRefresh}>
+          <img
+            src={refresh_img}
+            alt=""
+            className="refresh-img"
+            aria-label="Close"
+          />
         </button>
         <TipBox className="rank-tip"></TipBox>
       </div>
@@ -176,5 +170,5 @@ function Rank() {
     </div>
   );
 }
-Rank.propTypes={};
+Rank.propTypes = {};
 export default Rank;

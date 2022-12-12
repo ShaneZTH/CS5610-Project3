@@ -14,14 +14,12 @@ function TipBox() {
         method: "GET",
         credentials: "include"
       });
-      console.log("res: " + res);
 
       let data = await res.json();
       let userTip = data.tip[0].tip;
-      console.log("Tip data: ", userTip);
       setTip(userTip);
     } catch (err) {
-      console.error(err);
+      console.warn(err);
     }
   }
 
@@ -35,15 +33,12 @@ function TipBox() {
   };
 
   function saveTip() {
-    console.log("Save Tip: ", tip);
     let uri = tipURI;
-
     const username = window.localStorage.getItem("name");
     const reqBody = JSON.stringify({
       user: username,
       tip: tip
     });
-    console.log("saveTip reqBody: " + reqBody);
 
     fetch(uri, {
       body: reqBody,
@@ -54,10 +49,9 @@ function TipBox() {
       credentials: "include"
     })
       .then((res) => {
-        console.log("saveTip: " + JSON.stringify(res));
         return res.text();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.warn(err));
   }
 
   return (
@@ -86,5 +80,5 @@ function TipBox() {
   );
 }
 
-TipBox.PropTypes={};
+TipBox.PropTypes = {};
 export default TipBox;

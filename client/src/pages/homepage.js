@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from "react";
-import {useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Login from "../components/login";
 import save_img from "../images/save.jpg";
 import PropTypes from "prop-types";
@@ -8,7 +8,7 @@ import "../style/homepage.css";
 function HomePage({ updateUser }) {
   // const [greeting, setGreeting] = useState("");
   let greeting = "";
-  const [auth, setAuth] = useState({isAuth: false, user: null});
+  const [auth, setAuth] = useState({ isAuth: false, user: null });
 
   useEffect(() => {
     fetch("/auth", {
@@ -17,19 +17,18 @@ function HomePage({ updateUser }) {
       headers: {
         "Content-Type": "application/json"
       }
-    }).then((resp) => {
-      return resp.json();
     })
       .then((resp) => {
-        // console.log(resp);
+        return resp.json();
+      })
+      .then((resp) => {
         if (resp.success) {
-          setAuth({isAuth: true, user: resp.user});
+          setAuth({ isAuth: true, user: resp.user });
         } else {
-          console.error("User not authenticated.");
+          console.warn("User not authenticated.");
         }
       });
   }, []);
-
 
   if (auth.isAuth) {
     greeting = `Hi ${auth.user}, lets start saving today!`;
@@ -54,5 +53,5 @@ function HomePage({ updateUser }) {
   }
 }
 
-HomePage.propTypes={};
+HomePage.propTypes = {};
 export default HomePage;

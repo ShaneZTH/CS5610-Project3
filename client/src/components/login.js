@@ -25,12 +25,12 @@ function Login() {
       credentials: "include",
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({
         username: name,
-        password: password,
-      }),
+        password: password
+      })
     })
       .then((response) => {
         if (!response.ok) {
@@ -41,7 +41,7 @@ function Login() {
         navigate("/mybudget");
         return response.text();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.warn(err));
   };
   return (
     <div>

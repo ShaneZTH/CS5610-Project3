@@ -22,7 +22,7 @@ function App() {
     setName(name);
     localStorage.setItem("name", name);
   };
-  // console.log(name);
+
   return (
     <div role="main">
       <Router classname="router">
@@ -30,7 +30,11 @@ function App() {
         <Routes>
           {/* <Route exact path="/" element={<Homepage updateUser={updateUser} />} /> */}
           <Route exact path="/" element={<HomePage />} />
-          <Route exact path="/myaccount" element={<Dashboard username={name} />} />
+          <Route
+            exact
+            path="/myaccount"
+            element={<Dashboard username={name} />}
+          />
           <Route exact path="/mybudget" element={<Budget />} />
           <Route exact path="/myuserrank" element={<Rank />} />
         </Routes>

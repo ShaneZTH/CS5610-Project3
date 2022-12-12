@@ -25,12 +25,12 @@ function ExpenseForm(props) {
       credentials: "include",
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({
         category: Category,
-        amount: amount,
-      }),
+        amount: amount
+      })
     })
       .then((res) => {
         if (!res.ok) {
@@ -40,11 +40,9 @@ function ExpenseForm(props) {
         }
         const string = res.text();
         alert("Expense has been recorded.");
-        //navigate("/account");
-        //window.location.reload();
         return string;
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.warn(err));
   };
   return (
     <div>
@@ -74,7 +72,12 @@ function ExpenseForm(props) {
             </li>
             <li>
               <label className="expense-form-label">Amount:</label>
-              <input type="text" required onChange={updateAmount} aria-label="submit-expense"></input>
+              <input
+                type="text"
+                required
+                onChange={updateAmount}
+                aria-label="submit-expense"
+              ></input>
             </li>
           </ul>
           <button type="submit" className="save-button">
@@ -87,7 +90,7 @@ function ExpenseForm(props) {
 }
 
 ExpenseForm.propTypes = {
-  curr_user: PropTypes.string,
+  curr_user: PropTypes.string
 };
 
 export default ExpenseForm;
