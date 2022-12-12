@@ -5,6 +5,7 @@ import StatusTable from "../components/statusTable";
 import refresh_img from "../images/refresh.jpeg";
 import reset_img from "../images/reset-img.jpeg";
 import Alert from "react-bootstrap/Alert";
+
 function Dashboard() {
   const [showDining, setShowDining] = useState(true);
   const [showGrocery, setshowGrocery] = useState(true);
@@ -15,9 +16,32 @@ function Dashboard() {
   const [showOther, setshowOther] = useState(true);
   const [parentspendMap, setparentspendMap] = useState(new Map());
   const [parentbudgetMap, setparentbudgetMap] = useState(new Map());
-
+  const [isAuth, setAuth] = useState(false);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    fetch("/auth", {
+      credentials: "include",
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }).then((resp) => {
+      return resp.json();
+    })
+      .then((resp) => {
+        console.log(resp);
+        if (resp.success) {
+          console.log("Auth user: " + resp.user);
+          setAuth(true);
+        } else { // Reject access
+          console.error("User not authenticated.");
+          alert("You haven't logged in yet.");
+          navigate("/");
+          return;
+        }
+      });
+  }, []);
 
   const updateSpend = (spendMap) => {
     setparentspendMap(spendMap);
@@ -68,7 +92,7 @@ function Dashboard() {
         console.error(err);
       });
   };
-  useEffect(() => {}, []);
+  
   return (
     <div className="dashboard-page container">
       {/*             <h2 className='greeting'>Hi {username}, let's start saving today!</h2>

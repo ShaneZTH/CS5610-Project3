@@ -1,6 +1,5 @@
-// TODO: make a new login page for authorized users and direct unauthorized to login page
 import React, {useState, useEffect} from "react";
-import { UNSAFE_NavigationContext, useNavigate } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 import Login from "../components/login";
 import save_img from "../images/save.jpg";
 import PropTypes from "prop-types";

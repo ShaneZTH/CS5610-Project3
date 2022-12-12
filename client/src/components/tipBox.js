@@ -1,70 +1,74 @@
 import React, { useState, useEffect } from "react";
-import "../style/tipBox.css";
+import "../stylesheets/tipBox.css";
+import PropTypes from "prop-types";
 
 function TipBox() {
   const [tip, setTip] = useState("");
   const tipURI = "/api/tip";
-
-  useEffect(() => {
-    loadTip();
-  }, []);
 
   async function loadTip() {
     // Load tip from db
     let uri = tipURI;
     const res = await fetch(uri, {
       method: "GET",
-      credentials: "include",
+      credentials: "include"
     });
+    console.log("res: " + res);
 
     let data = await res.json();
-    let userTip = data[0].tip;
-    console.log("userTip: ", userTip);
+    let userTip = data.tip[0].tip;
+    console.log("Tip data: ", userTip);
     setTip(userTip);
   }
 
+  useEffect(() => {
+    loadTip();
+  }, []);
 
   let handleChange = (event) => {
     const val = event.target.value;
+    // console.log("Tip ", val);
     setTip(val);
   };
 
   function saveTip() {
+    console.log("Save Tip: ", tip);
     let uri = tipURI;
 
     const username = window.localStorage.getItem("name");
     const reqBody = JSON.stringify({
       user: username,
-      tip: tip,
+      tip: tip
     });
-    console.log("reqBody: ", reqBody);
+    console.log("saveTip reqBody: " + reqBody);
 
     fetch(uri, {
       body: reqBody,
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
       },
-      credentials: "include",
+      credentials: "include"
     })
       .then((res) => {
-        console.log("save res: ", res);
-        if (res.status >= 400) {
-          throw res.statusText;
-        }
-        alert("You saving tip has been saved in this box!\nCome back and edit at anytime.");
+        console.log("saveTip: " + JSON.stringify(res));
         return res.text();
       })
-      .catch((err) => {
-        console.error("Tip failed to save. " + err);
-        alert("Tip failed to save.");
-      });    
+      .catch((err) => console.log(err));
   }
 
   return (
     <div className="tipBox-wrapper">
-      <div className="labelBox">
-        <label className="tip-label">Set a Personal Saving Tip</label>
+      <h5>Set a Personal Saving Tip</h5>
+      <div className="rounded-lg">
+        <textarea
+          className="outline-0 mt-2 mb-2"
+          id="tip-text"
+          value={tip}
+          onChange={handleChange}
+        >
+          Nice, Mrs Pancakes. Real nice. aww. Look it up.
+        </textarea>
         <div className="bg-grey-light rounded-b-lg saveBtn">
           <button
             className="border border-grey px-2 py-1 rounded hover:bg-grey outline-0 text-grey-darkest mr-1"
@@ -74,21 +78,8 @@ function TipBox() {
           </button>
         </div>
       </div>
-      <div className="rounded-lg">
-        <label>
-          <textarea
-            className="outline-0 mt-2 mb-2"
-            id="tip-text"
-            value={tip}
-            onChange={handleChange}
-            aria-label="Close"
-          >
-            placeholder
-          </textarea>
-        </label>
-      </div>
     </div>
   );
 }
-TipBox.propTypes={};
+
 export default TipBox;

@@ -3,7 +3,10 @@ import refresh_img from "../images/refresh.jpeg";
 import "../style/rank.css";
 import Alert from "react-bootstrap/Alert";
 import TipBox from "../components/tipBox";
+import { useNavigate } from "react-router-dom";
 function Rank() {
+  const navigate = useNavigate();
+
   const [userList, setuserList] = useState([]);
   const [username, setUsername] = useState("");
   const [currspend, setCurrspend] = useState(0);
@@ -12,8 +15,32 @@ function Rank() {
   const [isbetter, setisbetter] = useState(false);
   const [showbetter, setshowbetter] = useState(true);
   const [showworse, setshowworse] = useState(true);
+  const [isAuth, setAuth] = useState(false);
 
   useEffect(() => {
+    fetch("/auth", {
+      credentials: "include",
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }).then((resp) => {
+      return resp.json();
+    })
+      .then((resp) => {
+        console.log(resp);
+        if (resp.success) {
+          console.log("Auth user: " + resp.user);
+          setAuth(true);
+          setUsername(resp.user);
+        } else { // Reject access
+          console.error("User not authenticated.");
+          alert("You haven't logged in yet.");
+          navigate("/");
+          return;
+        }
+      });
+      
     setUsername(window.localStorage.getItem("name"));
     getOldRank();
   }, []);
