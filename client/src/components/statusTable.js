@@ -135,7 +135,6 @@ function StatusTable({ updateBudget, updateSpend }) {
               <td>
                 {" "}
                 <ProgressBar
-                  bgcolor="orange"
                   progress={
                     Math.floor((100 * cateMap.get("dining")) / budgetMap.get("dining"))
                   }
@@ -155,13 +154,9 @@ function StatusTable({ updateBudget, updateSpend }) {
             ) && (
               <td>
                 <ProgressBar
-                  bgcolor="orange"
-                  progress={Math.min(
-                    100,
-                    Math.floor(
-                      (100 * cateMap.get("grocery")) / budgetMap.get("grocery")
-                    )
-                  )}
+                  progress={
+                    Math.floor((100 * cateMap.get("grocery")) / budgetMap.get("grocery"))
+                  }
                   height={20}
                 />
               </td>
@@ -179,14 +174,10 @@ function StatusTable({ updateBudget, updateSpend }) {
             ) && (
               <td>
                 <ProgressBar
-                  bgcolor="orange"
-                  progress={Math.min(
-                    100,
-                    Math.floor(
-                      (100 * cateMap.get("entertainment")) /
-                        budgetMap.get("entertainment")
-                    )
-                  )}
+                  progress={
+                    Math.floor((100 * cateMap.get("entertainment")) /
+                        budgetMap.get("entertainment"))
+                  }
                   height={20}
                 />
               </td>
@@ -203,13 +194,9 @@ function StatusTable({ updateBudget, updateSpend }) {
             ) && (
               <td>
                 <ProgressBar
-                  bgcolor="orange"
-                  progress={Math.min(
-                    100,
-                    Math.floor(
-                      (100 * cateMap.get("clothes")) / budgetMap.get("clothes")
-                    )
-                  )}
+                  progress={
+                    Math.floor((100 * cateMap.get("clothes")) / budgetMap.get("clothes"))
+                  }
                   height={20}
                 />
               </td>
@@ -224,13 +211,9 @@ function StatusTable({ updateBudget, updateSpend }) {
             ) && (
               <td>
                 <ProgressBar
-                  bgcolor="orange"
-                  progress={Math.min(
-                    100,
-                    Math.floor(
-                      (100 * cateMap.get("travel")) / budgetMap.get("travel")
-                    )
-                  )}
+                  progress={
+                    Math.floor((100 * cateMap.get("travel")) / budgetMap.get("travel"))
+                  }
                   height={20}
                 />
               </td>
@@ -245,14 +228,10 @@ function StatusTable({ updateBudget, updateSpend }) {
             ) && (
               <td>
                 <ProgressBar
-                  bgcolor="orange"
-                  progress={Math.min(
-                    100,
-                    Math.floor(
-                      (100 * cateMap.get("medicene")) /
-                        budgetMap.get("medicene")
-                    )
-                  )}
+                  progress={
+                    Math.floor((100 * cateMap.get("medicene")) /
+                        budgetMap.get("medicene"))
+                  }
                   height={20}
                 />
               </td>
@@ -268,13 +247,9 @@ function StatusTable({ updateBudget, updateSpend }) {
               <td>
                 {" "}
                 <ProgressBar
-                  bgcolor="orange"
-                  progress={Math.min(
-                    100,
-                    Math.floor(
-                      (100 * cateMap.get("others")) / budgetMap.get("others")
-                    )
-                  )}
+                  progress={
+                    Math.floor((100 * cateMap.get("others")) / budgetMap.get("others"))
+                  }
                   height={20}
                 />
               </td>

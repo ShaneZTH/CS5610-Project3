@@ -6,17 +6,18 @@ import PropTypes from "prop-types";
 // function Login({ updateUser }) {
 function Login() {
   const navigate = useNavigate();
-  var [name, setName] = useState();
-  var [password, setPassword] = useState();
+  let [name, setName] = useState();
+  let [password, setPassword] = useState();
 
   const nameUpdate = (event) => {
     setName(event.target.value);
     window.localStorage.setItem("name", name);
-    console.log(window.localStorage);
   };
+
   const passwordUpdate = (event) => {
     setPassword(event.target.value);
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const postURL = "/login";

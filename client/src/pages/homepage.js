@@ -21,9 +21,8 @@ function HomePage({ updateUser }) {
       return resp.json();
     })
       .then((resp) => {
-        console.log(resp);
+        // console.log(resp);
         if (resp.success) {
-          console.log("Auth user: " + resp.user);
           setAuth({isAuth: true, user: resp.user});
         } else {
           console.error("User not authenticated.");
