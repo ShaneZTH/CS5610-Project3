@@ -34,8 +34,6 @@ function BudgetForm() {
         }
         const string = res.text();
         alert("Budget has been recorded.");
-        //navigate("/account");
-        //window.location.reload();
         return string;
       })
       .catch((err) => console.log(err));

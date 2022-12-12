@@ -114,7 +114,9 @@ mongoUtil.connectToServer(() => {
   app.get("/auth", (req, res) => {
     if (req.isAuthenticated()) {
       console.log("Auth: " + req.user.user);
-      res.status(200).send({ success: true, message: "OK" });
+      res
+        .status(200)
+        .send({ success: true, message: "OK", user: req.user.user });
     } else {
       console.log("No auth");
       res.status(401).send({ success: false, message: "BAN" });

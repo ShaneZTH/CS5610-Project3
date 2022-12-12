@@ -9,7 +9,7 @@ function StatusTable({ updateBudget, updateSpend }) {
   const [budgetMap, usebudgetMap] = useState(new Map());
   const [totalSpending, usetotalSpending] = useState(0);
   const [totalBudget, usetotalBudget] = useState(0);
-  const [username, setUsername] = useState("");
+  // const [username, setUsername] = useState("");
 
   const getCategories = () => {
     const getURL = "/expense";
@@ -92,14 +92,15 @@ function StatusTable({ updateBudget, updateSpend }) {
   };
 
   useEffect(() => {
-    setUsername(window.localStorage.getItem("name"));
+    // setUsername(window.localStorage.getItem("name"));
     // console.log("username in status table component", username);
     getCategories();
     getBudgetMap();
   }, []);
   postOverall();
-  updateSpend(cateMap);
+  
   updateBudget(budgetMap);
+  updateSpend(cateMap);
 
   return (
     <div>
@@ -135,12 +136,9 @@ function StatusTable({ updateBudget, updateSpend }) {
                 {" "}
                 <ProgressBar
                   bgcolor="orange"
-                  progress={Math.min(
-                    100,
-                    Math.floor(
-                      (100 * cateMap.get("dining")) / budgetMap.get("dining")
-                    )
-                  )}
+                  progress={
+                    Math.floor((100 * cateMap.get("dining")) / budgetMap.get("dining"))
+                  }
                   height={20}
                 />
               </td>

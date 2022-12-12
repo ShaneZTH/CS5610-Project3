@@ -1,5 +1,5 @@
 .navbar {
-  height: 70px;
+  height: auto;
   width: 100%;
   display: flex;
   align-items: center;
@@ -24,13 +24,13 @@
   /* background-color: rgb(185, 143, 206); */
 }
 
-ul{
+ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
 
-li{
+li {
   float: left;
   margin-left: 20px;
 }
@@ -39,11 +39,11 @@ li{
   text-decoration: none;
   color: ivory;
   margin: 30px;
-  font-size:23px;
-  background-color: rgb(78, 110, 174);  
+  font-size: 23px;
+  background-color: rgb(78, 110, 174);
 }
 
-.menu-li{
+.menu-li {
   margin-top: 8px;
   margin-left: 40px;
 }
