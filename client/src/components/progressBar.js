@@ -1,11 +1,11 @@
 import React from "react";
 
-const ProgressBar = ({ bgcolor, progress, height }) => {
+const ProgressBar = ({ progress, height }) => {
   let barWidth = progress;
   let barColor = "orange";
   if (progress >= 100) {
     barWidth = 100;
-    barColor = "red";
+    barColor = "#FF6042";
   } else if (progress < 50) {
     barColor = "#00d084";
   }

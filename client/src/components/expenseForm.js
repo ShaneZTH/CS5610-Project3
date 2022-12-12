@@ -55,7 +55,6 @@ function ExpenseForm(props) {
             <li>
               <label className="dropdown-label">
                 Category:
-                {/* <input type='text' required></input> */}
                 <select
                   value={Category}
                   onChange={updateCategory}
@@ -75,7 +74,7 @@ function ExpenseForm(props) {
             </li>
             <li>
               <label className="expense-form-label">Amount:</label>
-              <input type="text" required onChange={updateAmount}></input>
+              <input type="text" required onChange={updateAmount} aria-label="submit-expense"></input>
             </li>
           </ul>
           <button type="submit" className="save-button">

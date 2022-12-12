@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "../stylesheets/tipBox.css";
+import "../style/tipBox.css";
 import PropTypes from "prop-types";
 
 function TipBox() {
@@ -9,16 +9,20 @@ function TipBox() {
   async function loadTip() {
     // Load tip from db
     let uri = tipURI;
-    const res = await fetch(uri, {
-      method: "GET",
-      credentials: "include"
-    });
-    console.log("res: " + res);
+    try {
+      const res = await fetch(uri, {
+        method: "GET",
+        credentials: "include"
+      });
+      console.log("res: " + res);
 
-    let data = await res.json();
-    let userTip = data.tip[0].tip;
-    console.log("Tip data: ", userTip);
-    setTip(userTip);
+      let data = await res.json();
+      let userTip = data.tip[0].tip;
+      console.log("Tip data: ", userTip);
+      setTip(userTip);
+    } catch (err) {
+      console.error(err);
+    }
   }
 
   useEffect(() => {
@@ -27,7 +31,6 @@ function TipBox() {
 
   let handleChange = (event) => {
     const val = event.target.value;
-    // console.log("Tip ", val);
     setTip(val);
   };
 
@@ -59,12 +62,13 @@ function TipBox() {
 
   return (
     <div className="tipBox-wrapper">
-      <h5>Set a Personal Saving Tip</h5>
+      <h3>Set a Personal Saving Tip</h3>
       <div className="rounded-lg">
         <textarea
           className="outline-0 mt-2 mb-2"
           id="tip-text"
           value={tip}
+          aria-label="Tip box"
           onChange={handleChange}
         >
           Nice, Mrs Pancakes. Real nice. aww. Look it up.
@@ -82,4 +86,5 @@ function TipBox() {
   );
 }
 
+TipBox.PropTypes={};
 export default TipBox;

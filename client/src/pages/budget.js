@@ -35,7 +35,7 @@ function Budget() {
 
   return (
     <div className="budget-page">
-      <h1 className="greeting">Hi {username}, lets start saving today!</h1>
+      <h2 className="greeting">Hi {username}, lets start saving today!</h2>
       <ExpenseForm curr_user={username} />
       <BudgetForm />
     </div>

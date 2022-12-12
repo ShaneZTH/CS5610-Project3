@@ -104,14 +104,14 @@ function StatusTable({ updateBudget, updateSpend }) {
 
   return (
     <div>
-      <h4>
+      <h3>
         Overall Spending:{" "}
         <b>
           {Math.floor((100 * totalSpending) / totalBudget) >= 0 
             ? Math.floor((100 * totalSpending) / totalBudget) + "%"
             : ""}
         </b>
-      </h4>
+      </h3>
       <Table className="table-component">
         <thead>
           <tr className="table">
