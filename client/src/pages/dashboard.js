@@ -74,7 +74,7 @@ function Dashboard() {
   };
   useEffect(() => {}, []);
   return (
-    <div className="dashboard-page">
+    <div className="dashboard-page container">
       {/*             <h2 className='greeting'>Hi {username}, let's start saving today!</h2>
             <ExpenseForm curr_user={username}/> */}
       <div className="status-div">
