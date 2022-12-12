@@ -16,7 +16,7 @@ require("dotenv").config();
 const PORT = process.env.PORT || 8080;
 
 var corsOptions = {
-  origin: "http://localhost:3000",
+  origin: "http://127.0.0.1:3000",
   methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD", "DELETE"],
   credentials: true,
 };
@@ -25,7 +25,7 @@ var corsOptions = {
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../client/build")));
   app.use(express.static(path.join(__dirname, "public")));
-/*   app.get("*", (req, res) => {
+  /*   app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "../client/build/index.html"));
   });  */
 }
