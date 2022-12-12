@@ -17,6 +17,11 @@
 
 - [Design Doc](https://docs.google.com/document/d/1XUuSi9c5Sal9Rxedo3zFdvfOoCsSGGy5Y-GhISV-ebw/edit?usp=sharing)
 
+### Powerpoint Links:
+
+- [Project 3](https://docs.google.com/presentation/d/103JV4gYfpZEIUTZt7s4ClHSkGExUe5ZJ8ycUypB2-L8/)
+- [Final Project](https://docs.google.com/presentation/d/1bRgVtVx6Efx3Hl5dwiWP2jGry0DcGHBoUQg0WBbe7IA/)
+
 ### Demo Videos:
 - [Project 3](https://youtu.be/JQskg0HS9mQ)
 - [Final Project](https://youtu.be/WzawJhDVpzo)
