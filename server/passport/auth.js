@@ -18,7 +18,6 @@ const authUser = (username, password, done) => {
     console.log("results: ", results);
 
     if (results) {
-      // Check password
       if (results.password != password) {
         //res.status(401).send("Invalid username or password");
         return done(null, false);
@@ -39,7 +38,7 @@ const authUser = (username, password, done) => {
         .then((result) => {
           console.log("User successfully created: " + result);
           db.collection("users").findOne(query, async (err, user) => {
-            await console.log("found user after registry", user);
+            await console.log("Found user after registry", user);
             return done(null, user);
           });
         })
@@ -62,7 +61,6 @@ module.exports = function (passport) {
   passport.serializeUser(function (user, done) {
     console.log("\n<-------- Serialize User -------->");
     console.log(user);
-
     done(null, user._id);
   });
 
