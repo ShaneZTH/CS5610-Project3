@@ -5,15 +5,18 @@ import Alert from "react-bootstrap/Alert";
 import TipBox from "../components/tipBox";
 function Rank() {
   const [userList, setuserList] = useState([]);
-
   const [username, setUsername] = useState("");
   const [currspend, setCurrspend] = useState(0);
   const [percentile, setPercentile] = useState(0);
   const [oldrank, setOldrank] = useState(0);
   const [isbetter, setisbetter] = useState(false);
-
   const [showbetter, setshowbetter] = useState(true);
   const [showworse, setshowworse] = useState(true);
+
+  useEffect(() => {
+    setUsername(window.localStorage.getItem("name"));
+    getOldRank();
+  }, []);
 
   const handleRefresh = () => {
     getAllUsers();
@@ -110,11 +113,6 @@ function Rank() {
       })
       .catch((err) => console.log(err));
   };
-
-  useEffect(() => {
-    setUsername(window.localStorage.getItem("name"));
-    getOldRank();
-  }, []);
 
   return (
     <div>

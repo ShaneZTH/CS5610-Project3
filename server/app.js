@@ -111,6 +111,16 @@ mongoUtil.connectToServer(() => {
     res.status(204).send(req.user.user); // The req.user stores the entire user that has been authenticated inside of it.
   });
 
+  app.get("/auth", (req, res) => {
+    if (req.isAuthenticated()) {
+      console.log("Auth: " + req.user.user);
+      res.status(200).send({ success: true, message: "OK" });
+    } else {
+      console.log("No auth");
+      res.status(401).send({ success: false, message: "BAN" });
+    }
+  });
+
   app.get("/logout", (req, res, next) => {
     console.log("log out user", req.session);
     req.session.destroy((err) => {

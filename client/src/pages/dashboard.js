@@ -5,7 +5,6 @@ import StatusTable from "../components/statusTable";
 import refresh_img from "../images/refresh.jpeg";
 import reset_img from "../images/reset-img.jpeg";
 import Alert from "react-bootstrap/Alert";
-
 function Dashboard() {
   const [showDining, setShowDining] = useState(true);
   const [showGrocery, setshowGrocery] = useState(true);
@@ -14,14 +13,11 @@ function Dashboard() {
   const [showTravel, setshowTravel] = useState(true);
   const [showMed, setshowMed] = useState(true);
   const [showOther, setshowOther] = useState(true);
+  const [parentspendMap, setparentspendMap] = useState(new Map());
+  const [parentbudgetMap, setparentbudgetMap] = useState(new Map());
 
   const navigate = useNavigate();
 
-  const [parentspendMap, setparentspendMap] = useState(new Map());
-  const [parentbudgetMap, setparentbudgetMap] = useState(new Map());
-  const handleclick = () => {
-    //window.location.reload();
-  };
 
   const updateSpend = (spendMap) => {
     setparentspendMap(spendMap);
@@ -42,7 +38,6 @@ function Dashboard() {
       }
     })
       .then((response) => {
-        // console.log(response);
         alert("Successfully reset current status");
       })
       .catch((err) => {
