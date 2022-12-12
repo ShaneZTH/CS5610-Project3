@@ -14,14 +14,34 @@ function Dashboard() {
   const [showTravel, setshowTravel] = useState(true);
   const [showMed, setshowMed] = useState(true);
   const [showOther, setshowOther] = useState(true);
-
-  const navigate = useNavigate();
-
   const [parentspendMap, setparentspendMap] = useState(new Map());
   const [parentbudgetMap, setparentbudgetMap] = useState(new Map());
-  const handleclick = () => {
-    //window.location.reload();
-  };
+  const [isAuth, setAuth] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    fetch("/auth", {
+      credentials: "include",
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+      .then((resp) => {
+        return resp.json();
+      })
+      .then((resp) => {
+        if (resp.success) {
+          setAuth(true);
+        } else {
+          // Reject access
+          console.warn("User not authenticated.");
+          alert("You haven't logged in yet.");
+          navigate("/");
+          return;
+        }
+      });
+  }, []);
 
   const updateSpend = (spendMap) => {
     setparentspendMap(spendMap);
@@ -42,13 +62,11 @@ function Dashboard() {
       }
     })
       .then((response) => {
-        // console.log(response);
         alert("Successfully reset current status");
       })
       .catch((err) => {
-        console.log(err);
+        console.warn(err);
       });
-    //window.location.reload();
   };
 
   const handleLogout = async (e) => {
@@ -70,10 +88,10 @@ function Dashboard() {
         return response.text();
       })
       .catch((err) => {
-        console.error(err);
+        console.warn(err);
       });
   };
-  useEffect(() => {}, []);
+
   return (
     <div className="dashboard-page container">
       {/*             <h2 className='greeting'>Hi {username}, let's start saving today!</h2>
@@ -84,7 +102,12 @@ function Dashboard() {
           <img src={refresh_img} alt="" className="refresh-img" />
         </button> */}
         <button className="reset-button" onClick={handleReset}>
-          <img src={reset_img} alt="" className="reset-img" aria-label="Close"/>
+          <img
+            src={reset_img}
+            alt=""
+            className="reset-img"
+            aria-label="Close"
+          />
         </button>
       </div>
       <StatusTable
@@ -220,5 +243,5 @@ function Dashboard() {
     </div>
   );
 }
-Dashboard.propTypes={};
+Dashboard.propTypes = {};
 export default Dashboard;

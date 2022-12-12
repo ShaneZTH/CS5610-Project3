@@ -45,6 +45,12 @@ const authUser = (username, password, done) => {
         .catch((err) => {
           console.error(err || `Error occurred when inserting data=${data}.`);
         });
+
+      //await setTimeout(3000);
+      /*         db.collection("users").findOne(query,async (err,user)=>{
+          await console.log("found user after registry",user);
+          return done(null,user);
+        });  */
     }
   });
 };

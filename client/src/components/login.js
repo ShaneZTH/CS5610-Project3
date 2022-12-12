@@ -1,35 +1,36 @@
-import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../style/login.css";
-import save_img from "../images/save.jpg";
 import PropTypes from "prop-types";
 
-function Login({ updateUser }) {
+// function Login({ updateUser }) {
+function Login() {
   const navigate = useNavigate();
-  var [name, setName] = useState();
-  var [password, setPassword] = useState();
+  let [name, setName] = useState();
+  let [password, setPassword] = useState();
 
   const nameUpdate = (event) => {
     setName(event.target.value);
-    updateUser(event.target.value);
+    window.localStorage.setItem("name", name);
   };
+
   const passwordUpdate = (event) => {
     setPassword(event.target.value);
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const postURL = "/login";
-    //navigate("/budget");
     fetch(postURL, {
       credentials: "include",
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({
         username: name,
-        password: password,
-      }),
+        password: password
+      })
     })
       .then((response) => {
         if (!response.ok) {
@@ -40,7 +41,7 @@ function Login({ updateUser }) {
         navigate("/mybudget");
         return response.text();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.warn(err));
   };
   return (
     <div>
@@ -76,15 +77,12 @@ function Login({ updateUser }) {
           take ~2 seconds
         </h3>
       </div>
-      <div>
+      {/* <div>
         <img src={save_img} alt="" className="pig-img" />
-      </div>
+      </div> */}
     </div>
   );
 }
 
-Login.propTypes = {
-  updateUser: PropTypes.func,
-};
-
+Login.propTypes = {};
 export default Login;

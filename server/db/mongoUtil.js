@@ -7,7 +7,6 @@ const db_name = "savepiggie";
 module.exports = {
   connectToServer: function (callback) {
     MongoClient.connect(uri, (err, client) => {
-      console.log("MongoUtil URI: " + uri);
       if (err) {
         console.log(err);
       } else {

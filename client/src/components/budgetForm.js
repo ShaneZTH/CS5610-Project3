@@ -19,12 +19,12 @@ function BudgetForm() {
       credentials: "include",
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({
         category: Category,
-        amount: amount,
-      }),
+        amount: amount
+      })
     })
       .then((res) => {
         if (!res.ok) {
@@ -34,17 +34,19 @@ function BudgetForm() {
         }
         const string = res.text();
         alert("Budget has been recorded.");
-        //navigate("/account");
-        //window.location.reload();
         return string;
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.warn(err));
   };
   return (
     <div>
       <div className="expense-form">
         <h3>Record your monthly budget</h3>
-        <form onSubmit={handleSubmit} aria-label="Close" className="expense-form-content">
+        <form
+          onSubmit={handleSubmit}
+          aria-label="Close"
+          className="expense-form-content"
+        >
           <ul>
             <li>
               <label className="dropdown-label">

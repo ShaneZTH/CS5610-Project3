@@ -16,7 +16,7 @@ require("dotenv").config();
 const PORT = process.env.PORT || 8080;
 
 var corsOptions = {
-  origin: "http://localhost:3000",
+  origin: "http://127.0.0.1:3000",
   methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD", "DELETE"],
   credentials: true,
 };
@@ -108,6 +108,18 @@ mongoUtil.connectToServer(() => {
   app.get("/user", (req, res) => {
     console.log("get session", req.user.user);
     res.status(204).send(req.user.user); // The req.user stores the entire user that has been authenticated inside of it.
+  });
+
+  app.get("/auth", (req, res) => {
+    if (req.isAuthenticated()) {
+      console.log("Auth: " + req.user.user);
+      res
+        .status(200)
+        .send({ success: true, message: "OK", user: req.user.user });
+    } else {
+      console.log("No auth");
+      res.status(401).send({ success: false, message: "BAN" });
+    }
   });
 
   app.get("/logout", (req, res, next) => {

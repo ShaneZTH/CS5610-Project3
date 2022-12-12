@@ -19,7 +19,7 @@ h4 {
   height: 360px;
   flex-wrap: wrap;
 }
-.expense-form-content{
+.expense-form-content {
   margin-left: 20px;
   display: flex;
   flex-direction: column;
@@ -32,6 +32,7 @@ h4 {
 
 .expense-form-label {
   /* Uniform size & alignment */
+  color: #000000;
   display: inline-block;
   width: 80px;
   margin: 30px auto;
@@ -46,7 +47,9 @@ h4 {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 15px;
 } */
+
 .dropdown-select {
+  color: #000000;
   display: inline-block;
   margin-left: 10px;
   width: 180px;

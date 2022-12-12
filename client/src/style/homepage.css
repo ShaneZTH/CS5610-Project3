@@ -1,0 +1,21 @@
+/* homepage.css */
+
+h1 {
+  text-align: center;
+}
+
+.greeting {
+  color: rgb(12, 25, 69);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin-top: 1.5rem 1rem;
+}
+
+div {
+  text-align: center;
+}
+
+.pig-img {
+  width: 40em;
+  height: 460px;
+  margin-top: 2rem;
+}

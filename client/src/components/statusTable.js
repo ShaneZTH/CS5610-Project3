@@ -9,31 +9,30 @@ function StatusTable({ updateBudget, updateSpend }) {
   const [budgetMap, usebudgetMap] = useState(new Map());
   const [totalSpending, usetotalSpending] = useState(0);
   const [totalBudget, usetotalBudget] = useState(0);
-  const [username, setUsername] = useState("");
+  // const [username, setUsername] = useState("");
 
   const getCategories = () => {
     const getURL = "/expense";
     fetch(getURL, {
       credentials: "include",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
       },
-      method: "GET",
+      method: "GET"
     })
       .then((res) => {
         return res.text();
       })
       .then((data) => {
-        var data_arr = JSON.parse(data);
-        var categoryMap = new Map();
-        var total_spend = 0;
-        for (var i = 0; i < data_arr.length; i++) {
+        let data_arr = JSON.parse(data);
+        let categoryMap = new Map();
+        let total_spend = 0;
+        for (let i = 0; i < data_arr.length; i++) {
           const category = data_arr[i]["category"];
           const amount = parseInt(data_arr[i]["amount"]);
           total_spend += amount;
           if (categoryMap.has(category)) {
-            var curr_amount = categoryMap.get(category);
-            // console.log("amount is:", amount);
+            let curr_amount = categoryMap.get(category);
             categoryMap.set(category, curr_amount + amount);
           } else {
             categoryMap.set(category, amount);
@@ -41,7 +40,6 @@ function StatusTable({ updateBudget, updateSpend }) {
         }
         usecateMap(categoryMap);
         usetotalSpending(total_spend);
-        //console.log(cateMap);
       });
   };
 
@@ -50,18 +48,18 @@ function StatusTable({ updateBudget, updateSpend }) {
     fetch(getURL, {
       credentials: "include",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
       },
-      method: "GET",
+      method: "GET"
     })
       .then((res) => {
         return res.text();
       })
       .then((data) => {
-        var data_arr = JSON.parse(data);
-        var budMap = new Map();
-        var total_bud = 0;
-        for (var i = 0; i < data_arr.length; i++) {
+        let data_arr = JSON.parse(data);
+        let budMap = new Map();
+        let total_bud = 0;
+        for (let i = 0; i < data_arr.length; i++) {
           const category = data_arr[i]["category"];
           const amount = parseInt(data_arr[i]["amount"]);
           total_bud += amount;
@@ -78,39 +76,38 @@ function StatusTable({ updateBudget, updateSpend }) {
       credentials: "include",
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({
         username: window.localStorage.getItem("name"),
-        overall: totalSpending / totalBudget,
-      }),
+        overall: totalSpending / totalBudget
+      })
     })
       .then((res) => {
         return res.text();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.warn(err));
   };
 
   useEffect(() => {
-    setUsername(window.localStorage.getItem("name"));
-    // console.log("username in status table component", username);
     getCategories();
     getBudgetMap();
   }, []);
   postOverall();
-  updateSpend(cateMap);
+
   updateBudget(budgetMap);
+  updateSpend(cateMap);
 
   return (
     <div>
-      <h4>
+      <h3>
         Overall Spending:{" "}
         <b>
-          {Math.floor((100 * totalSpending) / totalBudget) >= 0 
+          {Math.floor((100 * totalSpending) / totalBudget) >= 0
             ? Math.floor((100 * totalSpending) / totalBudget) + "%"
             : ""}
         </b>
-      </h4>
+      </h3>
       <Table className="table-component">
         <thead>
           <tr className="table">
@@ -134,12 +131,8 @@ function StatusTable({ updateBudget, updateSpend }) {
               <td>
                 {" "}
                 <ProgressBar
-                  bgcolor="orange"
-                  progress={Math.min(
-                    100,
-                    Math.floor(
-                      (100 * cateMap.get("dining")) / budgetMap.get("dining")
-                    )
+                  progress={Math.floor(
+                    (100 * cateMap.get("dining")) / budgetMap.get("dining")
                   )}
                   height={20}
                 />
@@ -157,12 +150,8 @@ function StatusTable({ updateBudget, updateSpend }) {
             ) && (
               <td>
                 <ProgressBar
-                  bgcolor="orange"
-                  progress={Math.min(
-                    100,
-                    Math.floor(
-                      (100 * cateMap.get("grocery")) / budgetMap.get("grocery")
-                    )
+                  progress={Math.floor(
+                    (100 * cateMap.get("grocery")) / budgetMap.get("grocery")
                   )}
                   height={20}
                 />
@@ -181,13 +170,9 @@ function StatusTable({ updateBudget, updateSpend }) {
             ) && (
               <td>
                 <ProgressBar
-                  bgcolor="orange"
-                  progress={Math.min(
-                    100,
-                    Math.floor(
-                      (100 * cateMap.get("entertainment")) /
-                        budgetMap.get("entertainment")
-                    )
+                  progress={Math.floor(
+                    (100 * cateMap.get("entertainment")) /
+                      budgetMap.get("entertainment")
                   )}
                   height={20}
                 />
@@ -205,12 +190,8 @@ function StatusTable({ updateBudget, updateSpend }) {
             ) && (
               <td>
                 <ProgressBar
-                  bgcolor="orange"
-                  progress={Math.min(
-                    100,
-                    Math.floor(
-                      (100 * cateMap.get("clothes")) / budgetMap.get("clothes")
-                    )
+                  progress={Math.floor(
+                    (100 * cateMap.get("clothes")) / budgetMap.get("clothes")
                   )}
                   height={20}
                 />
@@ -226,12 +207,8 @@ function StatusTable({ updateBudget, updateSpend }) {
             ) && (
               <td>
                 <ProgressBar
-                  bgcolor="orange"
-                  progress={Math.min(
-                    100,
-                    Math.floor(
-                      (100 * cateMap.get("travel")) / budgetMap.get("travel")
-                    )
+                  progress={Math.floor(
+                    (100 * cateMap.get("travel")) / budgetMap.get("travel")
                   )}
                   height={20}
                 />
@@ -247,13 +224,8 @@ function StatusTable({ updateBudget, updateSpend }) {
             ) && (
               <td>
                 <ProgressBar
-                  bgcolor="orange"
-                  progress={Math.min(
-                    100,
-                    Math.floor(
-                      (100 * cateMap.get("medicene")) /
-                        budgetMap.get("medicene")
-                    )
+                  progress={Math.floor(
+                    (100 * cateMap.get("medicene")) / budgetMap.get("medicene")
                   )}
                   height={20}
                 />
@@ -270,12 +242,8 @@ function StatusTable({ updateBudget, updateSpend }) {
               <td>
                 {" "}
                 <ProgressBar
-                  bgcolor="orange"
-                  progress={Math.min(
-                    100,
-                    Math.floor(
-                      (100 * cateMap.get("others")) / budgetMap.get("others")
-                    )
+                  progress={Math.floor(
+                    (100 * cateMap.get("others")) / budgetMap.get("others")
                   )}
                   height={20}
                 />
@@ -290,6 +258,6 @@ function StatusTable({ updateBudget, updateSpend }) {
 
 StatusTable.propTypes = {
   updateBudget: PropTypes.func,
-  updateSpend: PropTypes.func,
+  updateSpend: PropTypes.func
 };
 export default StatusTable;
