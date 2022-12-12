@@ -8,8 +8,14 @@ const db = mongoUtil.getDb();
 const coll = "tip";
 
 router.get("/", async (req, res) => {
+  if (!req.user || !req.user.user) {
+    console.error("Get tip called by unauthorized user. Rejected.");
+    res.status(401).send();
+    return;
+  }
+
   const user = req.user.user;
-  // console.log("GET tip called by user=" + user);
+  console.log("GET tip called by user=" + user);
 
   const query = { user: user };
   try {
@@ -17,6 +23,9 @@ router.get("/", async (req, res) => {
       .find(query)
       .toArray((err, result) => {
         if (err) return console.log(err);
+
+        console.log("Tip get result: ", result);
+
         res.status(200).json(result);
       });
   } catch (e) {
@@ -31,7 +40,7 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/", async function (req, res) {
-  // console.log("POST Tip: ", req.body);
+  console.log("POST Tip: ", req.body);
   const user = req.user.user;
 
   let data = {

@@ -5,6 +5,10 @@ function TipBox() {
   const [tip, setTip] = useState("");
   const tipURI = "/api/tip";
 
+  useEffect(() => {
+    loadTip();
+  }, []);
+
   async function loadTip() {
     // Load tip from db
     let uri = tipURI;
@@ -15,12 +19,10 @@ function TipBox() {
 
     let data = await res.json();
     let userTip = data[0].tip;
+    console.log("userTip: ", userTip);
     setTip(userTip);
   }
 
-  useEffect(() => {
-    loadTip();
-  }, []);
 
   let handleChange = (event) => {
     const val = event.target.value;
@@ -35,6 +37,7 @@ function TipBox() {
       user: username,
       tip: tip,
     });
+    console.log("reqBody: ", reqBody);
 
     fetch(uri, {
       body: reqBody,
@@ -45,9 +48,13 @@ function TipBox() {
       credentials: "include",
     })
       .then((res) => {
+        console.log("save res: ", res);
+
         return res.text();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.error("Save tip failed." + err));
+
+    alert("You saving tip has been saved in this box!\nCome back and edit at anytime.");
   }
 
   return (
