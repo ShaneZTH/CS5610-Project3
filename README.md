@@ -17,6 +17,10 @@
 
 - [Design Doc](https://docs.google.com/document/d/1XUuSi9c5Sal9Rxedo3zFdvfOoCsSGGy5Y-GhISV-ebw/edit?usp=sharing)
 
+### Demo Videos:
+- [Project 3](https://youtu.be/JQskg0HS9mQ)
+- [Final Project](https://youtu.be/WzawJhDVpzo)
+
 ## Project Objective
 
 We want to create a web application that helps users keep track of their spending and saving on a daily basis. This app aims to let users put down their budgets, display current spending status based on budgets and send out alerts when users are spending too much.
