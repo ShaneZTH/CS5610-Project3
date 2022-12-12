@@ -5,7 +5,12 @@ const mongoUtil = require("../db/mongoUtil.js");
 const db = mongoUtil.getDb();
 
 router.get("/", (req, res) => {
-  var collection = "rankstatus" + req.user.user;
+  if (!req.user) {
+    res.status(401).send();
+    return;
+  }
+
+  let collection = "rankstatus" + req.user.user;
   console.log("rank status collection is", collection);
   db.collection(collection)
     .find()
@@ -16,10 +21,10 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  var collection = "rankstatus" + req.user.user;
+  let collection = "rankstatus" + req.user.user;
 
   // db.collection(collection).deleteMany();
-  var data = req.body;
+  let data = req.body;
   //db.collection(collection).insertOne(req.body);
   db.collection(collection).bulkWrite(
     [{ deleteMany: { filter: {} } }, { insertOne: { data } }],

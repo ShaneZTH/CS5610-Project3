@@ -33,6 +33,7 @@ function BudgetForm() {
           return new Error(res.statusText);
         }
         const string = res.text();
+        alert("Budget has been recorded.");
         //navigate("/account");
         //window.location.reload();
         return string;

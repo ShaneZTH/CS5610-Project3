@@ -58,6 +58,7 @@ function Dashboard() {
     })
       .then((response) => {
         if (response.status === 204) {
+          localStorage.clear();
           alert("Successfully Logged Out");
           navigate("/");
         }
