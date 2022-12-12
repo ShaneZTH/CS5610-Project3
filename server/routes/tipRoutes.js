@@ -40,16 +40,35 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/", async function (req, res) {
+  if (!req.user || !req.user.user) {
+    console.error("Post tip called by unauthorized user. Rejected.");
+    res.status(401).send();
+    return;
+  }
+
   console.log("POST Tip: ", req.body);
   const user = req.user.user;
+  if (!user || req.body == null) {
+    res.status(400).statusMessage("Null info rejcted.");
+    return;
+  }
 
+  let query = { user: user };
   let data = {
     user: user,
     tip: req.body.tip,
   };
 
-  db.collection(coll).insertOne(data);
-  res.status(204).send();
+  db.collection(coll).findOneAndReplace(
+    query,
+    data,
+    { upsert: true },
+    (err, doc) => {
+      if (err) res.status(500).statusMessage(err);
+      else res.status(204).send();
+      return;
+    }
+  );
 });
 
 module.exports = router;

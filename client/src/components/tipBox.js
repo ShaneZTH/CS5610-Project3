@@ -49,12 +49,16 @@ function TipBox() {
     })
       .then((res) => {
         console.log("save res: ", res);
-
+        if (res.status >= 400) {
+          throw res.statusText;
+        }
+        alert("You saving tip has been saved in this box!\nCome back and edit at anytime.");
         return res.text();
       })
-      .catch((err) => console.error("Save tip failed." + err));
-
-    alert("You saving tip has been saved in this box!\nCome back and edit at anytime.");
+      .catch((err) => {
+        console.error("Tip failed to save. " + err);
+        alert("Tip failed to save.");
+      });    
   }
 
   return (
