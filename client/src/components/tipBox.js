@@ -16,7 +16,7 @@ function TipBox() {
       });
 
       let data = await res.json();
-      let userTip = data.tip[0].tip;
+      let userTip = data[0].tip;
       setTip(userTip);
     } catch (err) {
       console.warn(err);
@@ -49,9 +49,16 @@ function TipBox() {
       credentials: "include"
     })
       .then((res) => {
+        if (res.status >= 400) throw res.statusText;
+        alert(
+          "You saving tip has been saved in this box!\nCome back and edit at anytime."
+        );
         return res.text();
       })
-      .catch((err) => console.warn(err));
+      .catch((err) => {
+        console.error("Tip failed to save. " + err);
+        alert("Tip failed to save.");
+      });
   }
 
   return (
@@ -80,5 +87,5 @@ function TipBox() {
   );
 }
 
-TipBox.PropTypes = {};
+TipBox.propTypes = {};
 export default TipBox;
