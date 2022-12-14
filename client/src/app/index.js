@@ -10,7 +10,7 @@ import Budget from "../pages/budget";
 import HomePage from "../pages/homepage";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-
+//Clear code organization! Each page and component is in its own file.  
 function App() {
   var [name, setName] = useState("");
 
