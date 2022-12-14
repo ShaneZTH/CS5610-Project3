@@ -85,7 +85,7 @@ mongoUtil.connectToServer(() => {
   app.use("/rank", rankRouter);
   app.use("/rankstatus", rankstatusRouter);
   app.use("/api/tip", tipRouter);
-
+  //You use different routes for different pages/functions. What about using a seperate router file for user's functionality?
   // Routes
   app.post("/login", (req, res, next) => {
     passport.authenticate("local", (err, user, info) => {
