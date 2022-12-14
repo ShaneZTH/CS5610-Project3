@@ -63,3 +63,13 @@ We want to create a web application that helps users keep track of their spendin
 - Client
   - `cd ./client && npm install` to install all required dependencies for client side
   - Use command `npm run start` to initiate the client side webpage in your localhost
+
+## Feedback by Harshit Gajjar
+Nice and clean UI and amazing work implementing the passportjs. I tried using the website and most of the things were pretty much clear and easy to understand. However, I would like to provide some feedback.
+1. If you can distinguish the login page and home page. Even if i am logged in, it still shows me the login fields and even when I am not logged in, it shows logout button on dashboard page, which can be little confusing.
+
+2. On Budget and Expenses page, If i want to add multiple categories, I have to click save button multiple time and it takes me to dashboard. Instead if allow user to enter all the budgets and expenses and a save button at the end, which will save all the data in one go. This will eliminate number of clicks and improve user experience.
+
+3. In Ranking and tips page, when i click save for the tip, if you can show a popup or modal to show that it got saved.. it seemed to be at first that the website is frozen.. since nothing was happening.
+
+Overall, the website was able to demonstrate its purpose and I liked the progress bar in Dashboard. Great work!!
