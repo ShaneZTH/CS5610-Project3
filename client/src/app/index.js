@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "../App.css";
+// It's personal preference for file naming, but there is an Airbnb React/JSX Style Guide that most people follow. It recommends that Filename: Use PascalCase for filenames. E.g., ReservationCard.jsx.
 import NavBar from "../components/navbar";
 import Login from "../components/login";
 import Footer from "../components/footer";
