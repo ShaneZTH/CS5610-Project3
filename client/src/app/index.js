@@ -33,7 +33,10 @@ function App() {
           <Route
             exact
             path="/myaccount"
-            element={<Dashboard username={name} />}
+            element={
+              // you can try to wrap an additional authentication node to decide whether to present childern or nagivate to login page
+              <Dashboard username={name} />
+            }
           />
           <Route exact path="/mybudget" element={<Budget />} />
           <Route exact path="/myuserrank" element={<Rank />} />

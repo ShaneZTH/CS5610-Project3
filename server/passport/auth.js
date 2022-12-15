@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const mongoUtil = require("../db/mongoUtil.js");
 const db = mongoUtil.getDb();
-ObjectId = require("mongodb").ObjectID;
+ObjectId = require("mongodb").ObjectId;
 
 const express = require("express");
 const app = express();
@@ -15,7 +15,6 @@ const authUser = (username, password, done) => {
   const query = { user: username };
   db.collection("users").findOne(query, async (err, results) => {
     if (err) throw err;
-    console.log("results: ", results);
 
     if (results) {
       if (results.password != password) {
@@ -38,7 +37,7 @@ const authUser = (username, password, done) => {
         .then((result) => {
           console.log("User successfully created: " + result);
           db.collection("users").findOne(query, async (err, user) => {
-            await console.log("Found user after registry", user);
+            console.log("Found user after registry", user);
             return done(null, user);
           });
         })
